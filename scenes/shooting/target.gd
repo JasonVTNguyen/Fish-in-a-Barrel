@@ -1,6 +1,6 @@
 extends Sprite2D
 
-class_name Target
+class_name Target_Fish
 
 var target_max_health : int
 var target_cur_health : int
@@ -11,3 +11,5 @@ func _init(c_target_max_health : int = 200) -> void:
 
 func damage_target(damage) -> void:
 	target_cur_health -= damage
+	if target_cur_health <= 0:
+		print("target is dead.")

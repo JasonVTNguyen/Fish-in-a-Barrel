@@ -8,16 +8,6 @@
 script = ExtResource("1_lnu2h")
 
 [node name="Shooting Phase" parent="." unique_id=1924229214 instance=ExtResource("1_uwrxv")]
+visible = false
 
 [node name="Fishing" parent="." unique_id=1920484293 instance=ExtResource("2_yqjtg")]
-
-[node name="GUI" type="Control" parent="." unique_id=509291211]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="SplashScreenManager" type="Control" parent="GUI" unique_id=102932417]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0

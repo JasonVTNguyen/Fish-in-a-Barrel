@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://nv47b8t8jyrt"]
+
+[ext_resource type="Script" uid="uid://c4btywvs0dplv" path="res://scenes/fishing/fishing.gd" id="1_1mg86"]
+[ext_resource type="Texture2D" uid="uid://c2xdvha6suij8" path="res://icon.svg" id="1_nodve"]
+[ext_resource type="Script" uid="uid://cnm0q0r3nbl0x" path="res://scenes/fishing/create_fish_button.gd" id="2_lnkfm"]
+[ext_resource type="Script" uid="uid://ch3grr7rerk33" path="res://scenes/fishing/fish.gd" id="3_lnkfm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nodve"]
+size = Vector2(129.83382, 130.39255)
+
+[node name="Fishing" type="Node2D" unique_id=1920484293]
+script = ExtResource("1_1mg86")
+
+[node name="Create Fish Button" type="Sprite2D" parent="." unique_id=735912819]
+position = Vector2(579, 502.00006)
+scale = Vector2(5.453125, 0.8359375)
+texture = ExtResource("1_nodve")
+
+[node name="Area2D" type="Area2D" parent="Create Fish Button" unique_id=1367533058]
+script = ExtResource("2_lnkfm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Create Fish Button/Area2D" unique_id=1033666952]
+position = Vector2(0, 0.59802246)
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_nodve")
+
+[node name="Fish" type="Node2D" parent="." unique_id=1031524142]
+script = ExtResource("3_lnkfm")

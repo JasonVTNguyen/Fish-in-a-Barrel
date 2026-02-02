@@ -12,7 +12,7 @@ size = Vector2(129, 130)
 [sub_resource type="LabelSettings" id="LabelSettings_pebvm"]
 font_size = 32
 
-[node name="Shooting Phase" type="Node2D" unique_id=2124557051 groups=["Gun"]]
+[node name="Shooting Phase" type="Node2D" unique_id=2124557051]
 script = ExtResource("1_3kdxj")
 
 [node name="Target" type="Sprite2D" parent="." unique_id=233547846]
@@ -20,22 +20,22 @@ position = Vector2(786, 439)
 texture = ExtResource("1_ingh5")
 script = ExtResource("3_pebvm")
 
-[node name="Target Area" type="Area2D" parent="Target" unique_id=936811475 groups=["Gun"]]
+[node name="Target Area" type="Area2D" parent="Target" unique_id=936811475]
 script = ExtResource("2_3kdxj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Target/Target Area" unique_id=783195386]
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_pebvm")
 
-[node name="Gun" parent="." unique_id=1044033806 groups=["Gun"] instance=ExtResource("4_d8do8")]
-scale = Vector2(0.425, 0.425)
-
 [node name="DPS Label" type="Label" parent="." unique_id=1033671891]
 offset_left = 14.0
 offset_top = 567.0
 offset_right = 389.0
 offset_bottom = 646.0
-text = "You have done 0 damage."
+text = "You have done damage."
+
+[node name="Gun" parent="." unique_id=1044033806 instance=ExtResource("4_d8do8")]
+scale = Vector2(0.425, 0.425)
 
 [node name="Fish Health" type="Label" parent="." unique_id=1926319824]
 offset_top = 2.0
@@ -52,3 +52,6 @@ offset_right = 1155.0
 offset_bottom = 646.0
 text = "Ammo Count"
 horizontal_alignment = 1
+
+[connection signal="target_shot" from="Target/Target Area" to="." method="_on_target_area_target_shot"]
+[connection signal="no_ammo" from="Gun" to="." method="_on_gun_no_ammo"]
