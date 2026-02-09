@@ -58,3 +58,17 @@ offset_right = 1144.0
 offset_bottom = 71.0
 text = "Weight"
 label_settings = SubResource("LabelSettings_n7eig")
+
+[node name="Lake Boundaries" type="StaticBody2D" parent="." unique_id=1016460496]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Lake Boundaries" unique_id=2131008287]
+polygon = PackedVector2Array(287, 390, 256, 332, 62, 266, 56, 454, 1082, 509, 1072, 324, 1013, 368, 893, 389, 757, 430)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Lake Boundaries" unique_id=106183690]
+polygon = PackedVector2Array(1007, 242, 1067, 154, 996, 116, 843, 118, 843, 47, 1162, 65, 1129, 460, 1055, 346, 1075, 308)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Lake Boundaries" unique_id=514315953]
+polygon = PackedVector2Array(75, 292, 60, 254, 125, 186, 270, 123, 328, 61, 340, 1, 16, 128, 15, 364)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Lake Boundaries" unique_id=937295642]
+polygon = PackedVector2Array(314, 68, 522, 39, 767, 94, 848, 123, 884, 44, 544, -21, 270, 19)

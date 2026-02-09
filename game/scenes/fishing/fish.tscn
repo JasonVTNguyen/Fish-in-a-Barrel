@@ -7,13 +7,16 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i263x"]
 size = Vector2(128, 128)
 
-[node name="Fish" type="Sprite2D" unique_id=1942758568]
+[node name="Fish" type="Sprite2D" unique_id=1942758568 node_paths=PackedStringArray("agent")]
 scale = Vector2(0.375, 0.125)
 texture = ExtResource("1_nf6vl")
 script = ExtResource("2_c75su")
+agent = NodePath("NavigationAgent2D")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=318609521]
 script = ExtResource("3_c75su")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=728189849]
 shape = SubResource("RectangleShape2D_i263x")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=416885932]

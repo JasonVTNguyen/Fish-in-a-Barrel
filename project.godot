@@ -14,7 +14,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="Fish In A Barrel"
+config/name="Financed: Armed Audit"
 run/main_scene="uid://3wvgqfduwqwm"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
@@ -25,7 +25,7 @@ GameController="*uid://cf3oq2s84dj7"
 
 [display]
 
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 
 [input]
 

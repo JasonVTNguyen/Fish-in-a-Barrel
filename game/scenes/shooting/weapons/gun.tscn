@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://qvfrpgb15r2x"]
 
-[ext_resource type="Texture2D" uid="uid://dyyaiog7xqi1g" path="res://sprites/reticle.png" id="1_fpyx4"]
-[ext_resource type="Script" uid="uid://uwm4ijfvidg7" path="res://scenes/shooting/weapons/gun.gd" id="1_smfaa"]
+[ext_resource type="Texture2D" uid="uid://dyyaiog7xqi1g" path="res://game/sprites/reticle.png" id="1_fpyx4"]
+[ext_resource type="Script" uid="uid://uwm4ijfvidg7" path="res://game/scenes/shooting/weapons/gun.gd" id="1_smfaa"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fpyx4"]
 radius = 101.0
@@ -12,6 +12,11 @@ texture = ExtResource("1_fpyx4")
 script = ExtResource("1_smfaa")
 
 [node name="Damage Radius" type="Area2D" parent="." unique_id=428329084]
+scale = Vector2(2, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Damage Radius" unique_id=384972984]
 shape = SubResource("CapsuleShape2D_fpyx4")
+
+[connection signal="area_entered" from="Damage Radius" to="." method="_on_damage_radius_area_entered"]
+[connection signal="area_exited" from="Damage Radius" to="." method="_on_damage_radius_area_exited"]
+[connection signal="area_shape_entered" from="Damage Radius" to="." method="_on_damage_radius_area_shape_entered"]

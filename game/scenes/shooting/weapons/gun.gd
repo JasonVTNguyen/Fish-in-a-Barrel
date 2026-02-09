@@ -2,25 +2,35 @@ extends Sprite2D
 
 class_name Gun
 
+enum States {HIT, MISS}
+
+var state : States = States.MISS
+
+
 var gun_name : String
 var damage : int 
 var cap_ammo : int
 var max_ammo : int
 var cur_ammo : int
 var mag_size : int
+var reload_time : float
+
+var is_reloading : bool = false
 
 func _process(delta: float) -> void:
 	position = get_viewport().get_mouse_position()
 
-func _init(c_gun_name : String = "Test Gun", c_damage : int = 0, c_cap_ammo : int = 999999999, c_max_ammo : int = 999999999, c_mag_size : int = 10) -> void:
+func _init(c_gun_name : String = "Test Gun", c_damage : int = 0, c_cap_ammo : int = 999999999, c_max_ammo : int = 999999999, c_mag_size : int = 10, c_reload_time : float = 1.0) -> void:
 	gun_name = c_gun_name
 	damage = c_damage
 	cap_ammo = c_cap_ammo
 	max_ammo = c_max_ammo
 	cur_ammo = c_mag_size
 	mag_size = c_mag_size
-	
-	
+	reload_time = c_reload_time
+
+
+
 func check_can_fire_gun():
 	if cur_ammo > 0:
 		return true
@@ -47,8 +57,17 @@ func reload_gun():
 	var give_ammo = reload_calculation()
 	max_ammo -= give_ammo
 	cur_ammo += give_ammo
-	
 
 
 func _to_string() -> String:
 	return "Gun Name: " + gun_name + ", Damage: " + str(damage)
+
+
+
+func _on_damage_radius_area_entered(area: Area2D) -> void:
+	GameController.gun_state = GameController.GunState.HIT
+	print("shot will hit")
+
+func _on_damage_radius_area_exited(area: Area2D) -> void:
+	GameController.gun_state = GameController.GunState.MISS
+	print("shot will miss")
