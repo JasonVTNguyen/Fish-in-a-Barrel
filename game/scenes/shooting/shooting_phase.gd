@@ -1,11 +1,13 @@
 extends Node2D
 
 @onready var health_bar: ProgressBar = $"HUD Elements/Health Bar"
-@onready var reload_bar: ProgressBar = $"Reload Bar"
+@onready var reload_bar: ProgressBar = $"HUD Elements/Reload Bar"
 @onready var reload_timer: Timer = $ReloadTimer
 
+@onready var fire_rate_timer : Timer = $FireRateTimer
+
 var current_gun : Gun
-var new_target = Target_Fish.new(GameController.currentFish.health)
+var new_target : Target_Fish
 var total_damage = 0
 
 var reload_time : float = 0
@@ -17,13 +19,15 @@ var hold_timer
 func _ready() -> void:
 	GameController.primary_gun = Gun.new("Pistol", 5, 5000, 20, 10)
 	GameController.secondary_gun = Gun.new("Shotgun", 25, 3500, 50, 5)
+	print("Shooting Test: "+ str(GameController.currentFish))
+	new_target = Target_Fish.new(GameController.currentFish.health)
 	health_bar.max_value = new_target.target_max_health
 	health_bar.value = new_target.target_max_health
 	current_gun = GameController.primary_gun
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	update_labels()
 	print(current_gun)
-	$"Reload Bar".max_value = current_gun.reload_time
+	$"HUD Elements/Reload Bar".max_value = current_gun.reload_time
 	
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Switch Weapons"):
@@ -80,7 +84,7 @@ func update_damage():
 	return false
 
 func update_labels() -> void:
-	$"Reload Bar".value = reload_timer.time_left
+	$"HUD Elements/Reload Bar".value = reload_timer.time_left
 	$"HUD Elements/Weapon Name".text = str(current_gun.gun_name)
 	$"HUD Elements/Fish Health".text = str(new_target.target_cur_health) + " / " + str(new_target.target_max_health)
 	$"HUD Elements/Fish Name".text = str(GameController.currentFish.fish_name)

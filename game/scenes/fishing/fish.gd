@@ -2,10 +2,9 @@ extends Sprite2D
 
 class_name Fish
 
-var rng = RandomNumberGenerator.new()
 var screen_size = Vector2(1152,648)
-var r_x = rng.randi_range(200, 960)
-var r_y = rng.randi_range(170, 300)
+var r_x = randi_range(200, 960)
+var r_y = randi_range(170, 300)
 
 var fish_name : String
 var weight : float
@@ -13,11 +12,8 @@ var health : float
 var img : String
 var lore : String
 
-var wander_timer : float = 0.0
-var wander_target : Vector2
-var spawn_position : Vector2
 
-enum State { WANDER, ATTRACT}
+enum State { WANDER, ATTRACT }
 
 @export var agent : NavigationAgent2D
 
@@ -30,10 +26,14 @@ func _init(c_fish_name : String = "Test Fish", c_weight : float = 250.0, c_healt
 	self.position = Vector2(r_x, r_y)
 
 func _ready() -> void:
-	print()
+	pass
 
-func _pick_new_wander_target():
-	var angle
+func copy_fish() -> void:
+	GameController.currentFish.fish_name = self.fish_name
+	GameController.currentFish.weight = self.weight
+	GameController.currentFish.health = self.health
+	GameController.currentFish.img = self.img
+	GameController.currentFish.lore = self.lore
 
 func _to_string() -> String:
 	return fish_name +": Weight: " + str(weight) + " Health: " + str(health)

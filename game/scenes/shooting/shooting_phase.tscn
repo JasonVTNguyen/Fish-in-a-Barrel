@@ -113,6 +113,13 @@ offset_bottom = 567.0
 text = "Gun Name"
 label_settings = SubResource("LabelSettings_q4mg4")
 
+[node name="Reload Bar" type="ProgressBar" parent="HUD Elements" unique_id=1882958598]
+layout_mode = 0
+offset_left = 378.0
+offset_top = 579.0
+offset_right = 772.0
+offset_bottom = 606.0
+
 [node name="Boundaries" type="Node2D" parent="." unique_id=1549973130]
 position = Vector2(-27, 912)
 
@@ -144,10 +151,6 @@ shape = SubResource("RectangleShape2D_q4mg4")
 [node name="ReloadTimer" type="Timer" parent="." unique_id=789438238]
 one_shot = true
 
-[node name="Reload Bar" type="ProgressBar" parent="." unique_id=1882958598]
-offset_left = 378.0
-offset_top = 579.0
-offset_right = 772.0
-offset_bottom = 606.0
+[node name="FireRateTimer" type="Timer" parent="." unique_id=2046140892]
 
 [connection signal="area_entered" from="Boundaries/Boundary Areas" to="Target Fish" method="_on_boundary_areas_area_entered"]

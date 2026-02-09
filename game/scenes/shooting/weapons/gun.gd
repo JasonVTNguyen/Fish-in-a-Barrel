@@ -2,11 +2,6 @@ extends Sprite2D
 
 class_name Gun
 
-enum States {HIT, MISS}
-
-var state : States = States.MISS
-
-
 var gun_name : String
 var damage : int 
 var cap_ammo : int
@@ -30,7 +25,6 @@ func _init(c_gun_name : String = "Test Gun", c_damage : int = 0, c_cap_ammo : in
 	reload_time = c_reload_time
 
 
-
 func check_can_fire_gun():
 	if cur_ammo > 0:
 		return true
@@ -47,8 +41,7 @@ func reload_calculation() -> int:
 		return used_ammo
 	else:
 		return max_ammo
-	
-	
+
 func fire_gun():
 	if check_can_fire_gun():
 		cur_ammo -= 1
@@ -58,16 +51,13 @@ func reload_gun():
 	max_ammo -= give_ammo
 	cur_ammo += give_ammo
 
-
 func _to_string() -> String:
 	return "Gun Name: " + gun_name + ", Damage: " + str(damage)
 
-
-
 func _on_damage_radius_area_entered(area: Area2D) -> void:
 	GameController.gun_state = GameController.GunState.HIT
-	print("shot will hit")
+	#print("shot will hit")
 
 func _on_damage_radius_area_exited(area: Area2D) -> void:
 	GameController.gun_state = GameController.GunState.MISS
-	print("shot will miss")
+	#print("shot will miss")

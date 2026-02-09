@@ -35,4 +35,7 @@ func target_hit():
 	
 func _on_boundary_areas_area_entered(area: Area2D) -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	get_tree().change_scene_to_file("res://game/scenes/fishing/fishing.tscn")
+	if GameController.current_bait >= 1:
+		get_tree().change_scene_to_file("res://game/scenes/fishing/fishing.tscn")
+	else:
+		get_tree().change_scene_to_file("res://game/scenes/shopping/shopping_menu.tscn")

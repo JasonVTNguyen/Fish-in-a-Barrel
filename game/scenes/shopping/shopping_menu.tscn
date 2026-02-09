@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://83iqaojexvhg" path="res://game/scenes/shopping/shopping_menu.gd" id="1_bl3e4"]
 [ext_resource type="Script" uid="uid://dr5ykvpx7yvvd" path="res://game/scenes/shopping/inventory.gd" id="1_sn45h"]
+[ext_resource type="Script" uid="uid://cmgpngxsyhvv1" path="res://game/scenes/shopping/item.gd" id="3_ghdg7"]
 
 [node name="Shopping Menu" type="Control" unique_id=68397610]
 layout_mode = 3
@@ -26,10 +27,13 @@ horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="." unique_id=697041299]
 layout_mode = 0
-offset_left = 408.0
-offset_top = 128.0
-offset_right = 736.0
-offset_bottom = 176.0
+offset_left = 817.0
+offset_top = 595.0
+offset_right = 1145.0
+offset_bottom = 643.0
 text = "Back to Fishing"
+
+[node name="Item" type="Node" parent="." unique_id=20673062]
+script = ExtResource("3_ghdg7")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
