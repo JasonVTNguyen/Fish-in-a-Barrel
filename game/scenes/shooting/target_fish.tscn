@@ -15,7 +15,7 @@ script = ExtResource("1_sglp5")
 [node name="Target" type="Sprite2D" parent="." unique_id=1878476448]
 texture = ExtResource("1_fu23n")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=372397662]
+[node name="Physics Shape" type="CollisionShape2D" parent="." unique_id=372397662]
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_pebvm")
 

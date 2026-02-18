@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://83iqaojexvhg" path="res://game/scenes/shopping/shopping_menu.gd" id="1_bl3e4"]
 [ext_resource type="Script" uid="uid://dr5ykvpx7yvvd" path="res://game/scenes/shopping/inventory.gd" id="1_sn45h"]
 [ext_resource type="Script" uid="uid://cmgpngxsyhvv1" path="res://game/scenes/shopping/item.gd" id="3_ghdg7"]
+[ext_resource type="Script" uid="uid://blqj3wwp1f2dk" path="res://game/scenes/shopping/item_catalogue.gd" id="4_xejfy"]
 
 [node name="Shopping Menu" type="Control" unique_id=68397610]
 layout_mode = 3
@@ -35,5 +36,8 @@ text = "Back to Fishing"
 
 [node name="Item" type="Node" parent="." unique_id=20673062]
 script = ExtResource("3_ghdg7")
+
+[node name="Item Catalogue" type="Node" parent="." unique_id=2098231282]
+script = ExtResource("4_xejfy")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

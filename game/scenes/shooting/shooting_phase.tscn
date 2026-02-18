@@ -115,10 +115,17 @@ label_settings = SubResource("LabelSettings_q4mg4")
 
 [node name="Reload Bar" type="ProgressBar" parent="HUD Elements" unique_id=1882958598]
 layout_mode = 0
-offset_left = 378.0
-offset_top = 579.0
-offset_right = 772.0
-offset_bottom = 606.0
+offset_left = 859.0
+offset_top = 624.0
+offset_right = 1150.0
+offset_bottom = 651.0
+
+[node name="FireRate Bar" type="ProgressBar" parent="HUD Elements" unique_id=2141962289]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 624.0
+offset_right = 761.0
+offset_bottom = 651.0
 
 [node name="Boundaries" type="Node2D" parent="." unique_id=1549973130]
 position = Vector2(-27, 912)
@@ -152,5 +159,6 @@ shape = SubResource("RectangleShape2D_q4mg4")
 one_shot = true
 
 [node name="FireRateTimer" type="Timer" parent="." unique_id=2046140892]
+one_shot = true
 
 [connection signal="area_entered" from="Boundaries/Boundary Areas" to="Target Fish" method="_on_boundary_areas_area_entered"]

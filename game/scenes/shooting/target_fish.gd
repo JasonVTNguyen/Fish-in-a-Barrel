@@ -9,7 +9,7 @@ var target_cur_health : int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	self.apply_impulse(Vector2(0,-500))
+	self.apply_impulse(Vector2(0,-550))
 	self.gravity_scale = 0.3
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -30,7 +30,7 @@ var push_direction
 
 func target_hit():
 	push_direction = (self.position.x - GameController.screen_size[0] / 2) * -0.5
-	self.apply_impulse(Vector2(push_direction,-250))
+	self.apply_impulse(Vector2(push_direction,-350))
 
 	
 func _on_boundary_areas_area_entered(area: Area2D) -> void:

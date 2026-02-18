@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cu6abksrs4xpo"]
+
+[ext_resource type="Texture2D" uid="uid://c2xdvha6suij8" path="res://icon.svg" id="1_hmi3o"]
+[ext_resource type="Script" uid="uid://cgeosklm2n8k4" path="res://game/scenes/fishing/bobber.gd" id="2_kh2sh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j3aex"]
+radius = 253.76878
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hmi3o"]
+radius = 69.85697
+
+[node name="Bobber" type="Sprite2D" unique_id=1580847433]
+scale = Vector2(0.4296875, 0.4296875)
+texture = ExtResource("1_hmi3o")
+script = ExtResource("2_kh2sh")
+
+[node name="Attraction Range" type="Area2D" parent="." unique_id=115710734]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attraction Range" unique_id=2030451897]
+shape = SubResource("CircleShape2D_j3aex")
+
+[node name="Fish Collider" type="Area2D" parent="." unique_id=219736177]
+scale = Vector2(0.9999998, 0.9999998)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fish Collider" unique_id=341548583]
+shape = SubResource("CircleShape2D_hmi3o")
+debug_color = Color(0.704155, 0.35361308, 0.85866904, 0.41960785)
+
+[connection signal="area_entered" from="Attraction Range" to="." method="_on_attraction_range_area_entered"]
+[connection signal="area_entered" from="Fish Collider" to="." method="_on_fish_collider_area_entered"]

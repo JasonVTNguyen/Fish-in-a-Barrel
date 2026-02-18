@@ -9,13 +9,14 @@ var max_ammo : int
 var cur_ammo : int
 var mag_size : int
 var reload_time : float
+var fire_rate : float
 
 var is_reloading : bool = false
 
 func _process(delta: float) -> void:
 	position = get_viewport().get_mouse_position()
 
-func _init(c_gun_name : String = "Test Gun", c_damage : int = 0, c_cap_ammo : int = 999999999, c_max_ammo : int = 999999999, c_mag_size : int = 10, c_reload_time : float = 1.0) -> void:
+func _init(c_gun_name : String = "Test Gun", c_damage : int = 0, c_cap_ammo : int = 999999999, c_max_ammo : int = 999999999, c_mag_size : int = 10, c_reload_time : float = 1.0, c_fire_rate : float = 15.0) -> void:
 	gun_name = c_gun_name
 	damage = c_damage
 	cap_ammo = c_cap_ammo

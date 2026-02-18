@@ -4,7 +4,7 @@ extends Node
 
 var inventory : Inventory
 var currentFish : Fish
-var total_weight : float = 0.0
+var total_value : float = 0.0
 var total_bait : int = 3
 var current_bait : int = 3
 var primary_gun = Gun.new("Pistol", 5, 5000, 20, 10)
@@ -27,6 +27,6 @@ func _process(delta: float) -> void:
 func reset_game():
 	inventory = Inventory.new()
 	currentFish = Fish.new()
-	total_weight = 0.0
+	total_value = 0.0
 	total_bait = 3
 	current_bait = 3

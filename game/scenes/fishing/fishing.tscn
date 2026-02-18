@@ -1,15 +1,10 @@
 [gd_scene format=3 uid="uid://nv47b8t8jyrt"]
 
 [ext_resource type="Script" uid="uid://c4btywvs0dplv" path="res://game/scenes/fishing/fishing.gd" id="1_1mg86"]
-[ext_resource type="Texture2D" uid="uid://c2xdvha6suij8" path="res://icon.svg" id="1_nodve"]
-[ext_resource type="Script" uid="uid://cnm0q0r3nbl0x" path="res://game/scenes/fishing/create_fish_button.gd" id="2_lnkfm"]
+[ext_resource type="PackedScene" uid="uid://cu6abksrs4xpo" path="res://game/scenes/fishing/bobber.tscn" id="4_n7eig"]
 [ext_resource type="PackedScene" uid="uid://clnogdppnhjec" path="res://game/scenes/fishing/fish.tscn" id="5_f6nhs"]
 [ext_resource type="Texture2D" uid="uid://bsigi13tsl8o6" path="res://game/bg/lakebg.png" id="5_n7eig"]
-[ext_resource type="Script" uid="uid://cgeosklm2n8k4" path="res://game/scenes/fishing/bobber.gd" id="6_f6nhs"]
 [ext_resource type="Script" uid="uid://7k0ss52vhvmq" path="res://game/scenes/fishing/fish_dictionary.gd" id="7_j3aex"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nodve"]
-size = Vector2(129.83382, 130.39255)
 
 [sub_resource type="LabelSettings" id="LabelSettings_i263x"]
 font_size = 64
@@ -22,9 +17,6 @@ font_color = Color(0, 0, 0, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f6nhs"]
 size = Vector2(1211.5, 222)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_j3aex"]
-radius = 189.15
-
 [node name="Fishing" type="Node2D" unique_id=1920484293]
 script = ExtResource("1_1mg86")
 
@@ -33,20 +25,6 @@ position = Vector2(576, 324)
 scale = Vector2(0.72, 0.53999996)
 texture = ExtResource("5_n7eig")
 metadata/_edit_lock_ = true
-
-[node name="Create Fish Button" type="Sprite2D" parent="." unique_id=735912819]
-visible = false
-position = Vector2(1016, 616)
-scale = Vector2(1.903, 0.292)
-texture = ExtResource("1_nodve")
-
-[node name="Area2D" type="Area2D" parent="Create Fish Button" unique_id=1367533058]
-script = ExtResource("2_lnkfm")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Create Fish Button/Area2D" unique_id=1033666952]
-position = Vector2(0, 0.59802246)
-scale = Vector2(0.9999999, 0.9999999)
-shape = SubResource("RectangleShape2D_nodve")
 
 [node name="Fish" parent="." unique_id=1942758568 instance=ExtResource("5_f6nhs")]
 position = Vector2(-16, -48)
@@ -59,7 +37,7 @@ offset_bottom = 648.0
 text = "Total Bait"
 label_settings = SubResource("LabelSettings_i263x")
 
-[node name="Total Weight" type="Label" parent="." unique_id=465480026]
+[node name="Total Value" type="Label" parent="." unique_id=465480026]
 offset_left = 992.0
 offset_top = 8.0
 offset_right = 1144.0
@@ -85,20 +63,10 @@ polygon = PackedVector2Array(314, 68, 522, 39, 767, 94, 848, 123, 884, 44, 544, 
 position = Vector2(577.25, 543)
 shape = SubResource("RectangleShape2D_f6nhs")
 
-[node name="Bobber" type="Sprite2D" parent="." unique_id=753819744]
+[node name="Bobber" parent="." unique_id=1580847433 instance=ExtResource("4_n7eig")]
 position = Vector2(-60, 152.99998)
-scale = Vector2(0.4296875, 0.4296875)
-texture = ExtResource("1_nodve")
-script = ExtResource("6_f6nhs")
-
-[node name="Area2D" type="Area2D" parent="Bobber" unique_id=1003755681]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bobber/Area2D" unique_id=1364118767]
-shape = SubResource("CircleShape2D_j3aex")
 
 [node name="BiteTimer" type="Timer" parent="." unique_id=1723208164]
 
 [node name="Fish Dictionary" type="Node" parent="." unique_id=1597366368]
 script = ExtResource("7_j3aex")
-
-[connection signal="area_entered" from="Bobber/Area2D" to="Bobber" method="_on_area_2d_area_entered"]

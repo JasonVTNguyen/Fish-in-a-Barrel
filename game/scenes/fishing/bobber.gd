@@ -20,6 +20,13 @@ func _input(event: InputEvent) -> void:
 			is_placed = false
 
 
-func _on_area_2d_area_entered(area: Area2D) -> void:
+func _on_attraction_range_area_entered(area: Area2D) -> void:
+	if is_placed:
+		print("Fish Detected at: " + str(area.name))
 	pass
-	#print("Fish Detected at: " + str(area.name))
+
+
+func _on_fish_collider_area_entered(area: Area2D) -> void:
+	if is_placed:
+		("Fish Touched")
+	pass

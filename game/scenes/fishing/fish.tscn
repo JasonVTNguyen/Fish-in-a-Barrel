@@ -8,9 +8,12 @@
 radius = 162.135
 height = 324.27
 
-[node name="Fish" type="Sprite2D" unique_id=1942758568 node_paths=PackedStringArray("agent")]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i8kew"]
+radius = 80.0
+height = 176.0
+
+[node name="Fish" type="CharacterBody2D" unique_id=1605965542 node_paths=PackedStringArray("agent")]
 scale = Vector2(0.375, 0.125)
-texture = ExtResource("1_nf6vl")
 script = ExtResource("2_c75su")
 agent = NodePath("NavigationAgent2D")
 
@@ -21,3 +24,9 @@ script = ExtResource("3_c75su")
 shape = SubResource("CapsuleShape2D_c75su")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=416885932]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1457391121]
+shape = SubResource("CapsuleShape2D_i8kew")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2103011584]
+texture = ExtResource("1_nf6vl")

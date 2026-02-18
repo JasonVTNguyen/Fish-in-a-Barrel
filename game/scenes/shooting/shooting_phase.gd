@@ -2,6 +2,8 @@ extends Node2D
 
 @onready var health_bar: ProgressBar = $"HUD Elements/Health Bar"
 @onready var reload_bar: ProgressBar = $"HUD Elements/Reload Bar"
+@onready var fire_rate_bar: ProgressBar = $"HUD Elements/FireRate Bar"
+
 @onready var reload_timer: Timer = $ReloadTimer
 
 @onready var fire_rate_timer : Timer = $FireRateTimer
@@ -12,13 +14,14 @@ var total_damage = 0
 
 var reload_time : float = 0
 
+@export var _fire_frames : int = 50
+@export var _fire_rate : int = 1
+
 const switchGun : int = 2000
 var hold_timer
 
 
 func _ready() -> void:
-	GameController.primary_gun = Gun.new("Pistol", 5, 5000, 20, 10)
-	GameController.secondary_gun = Gun.new("Shotgun", 25, 3500, 50, 5)
 	print("Shooting Test: "+ str(GameController.currentFish))
 	new_target = Target_Fish.new(GameController.currentFish.health)
 	health_bar.max_value = new_target.target_max_health
@@ -28,8 +31,19 @@ func _ready() -> void:
 	update_labels()
 	print(current_gun)
 	$"HUD Elements/Reload Bar".max_value = current_gun.reload_time
+	$"HUD Elements/FireRate Bar".max_value = current_gun.fire_rate
 	
+
 func _process(delta: float) -> void:
+	#if Input.is_action_pressed("Shoot"):
+		#if fire_rate_timer.is_stopped():
+			#if GameController.gun_state == GameController.GunState.HIT and reload_timer.is_stopped():	
+				#if update_damage():
+					#$"Target Fish".target_hit()
+			#if reload_timer.is_stopped():
+				#if current_gun.fire_gun():
+					#print("gun shot")
+			#fire_rate_timer.start(current_gun.fire_rate/60)
 	if Input.is_action_just_pressed("Switch Weapons"):
 		if hold_timer < 1:
 			hold_timer += delta
@@ -39,6 +53,8 @@ func _process(delta: float) -> void:
 					current_gun = GameController.secondary_gun
 				else:
 					current_gun = GameController.primary_gun
+					$"HUD Elements/Reload Bar".max_value = current_gun.reload_time
+					$"HUD Elements/FireRate Bar".max_value = current_gun.fire_rate
 				print("Switch Weapons")
 			else:
 				current_gun.reload_gun()
@@ -62,7 +78,7 @@ func _input(event: InputEvent) -> void:
 	update_labels()
 
 func target_dead():
-	GameController.total_weight += GameController.currentFish.weight
+	GameController.total_value += GameController.currentFish.value
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	if GameController.current_bait > 0:
 		get_tree().change_scene_to_file("res://game/scenes/fishing/fishing.tscn")
@@ -85,6 +101,7 @@ func update_damage():
 
 func update_labels() -> void:
 	$"HUD Elements/Reload Bar".value = reload_timer.time_left
+	$"HUD Elements/FireRate Bar".value = fire_rate_timer.time_left
 	$"HUD Elements/Weapon Name".text = str(current_gun.gun_name)
 	$"HUD Elements/Fish Health".text = str(new_target.target_cur_health) + " / " + str(new_target.target_max_health)
 	$"HUD Elements/Fish Name".text = str(GameController.currentFish.fish_name)
