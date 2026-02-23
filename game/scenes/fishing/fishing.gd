@@ -1,8 +1,12 @@
 extends Node2D
 
 var fish_scene : PackedScene = preload("res://game/scenes/fishing/fish.tscn")
+var bobber_location : Vector2
+@onready var fish_move_area : NavigationRegion2D = $"Fish Move Area"
 
-enum BobberState {}
+enum BobberState {SET, NOT_SET}
+var bobber_state = BobberState.NOT_SET
+
 
 func _ready() -> void:
 	$"Bait Count".text = str(GameController.current_bait)
@@ -25,12 +29,23 @@ func randomize_fish(new_fish : Fish) -> void:
 	new_fish.health = random_fish.health
 	new_fish.img = random_fish.img
 	new_fish.lore = random_fish.lore
-	
-	
-func makeFish(fish):
-	print("Making Fish")
-	GameController.current_bait -= 1
-	GameController.currentFish = Fish.new(fish.fish_name, fish.value, fish.health, fish.img, fish.lore)
-	get_tree().change_scene_to_file("res://game/scenes/shooting/shooting_phase.tscn")
 
-	
+func makeFish(fish):
+	if bobber_state == BobberState.SET:
+		print("Making Fish")
+		GameController.current_bait -= 1
+		GameController.currentFish = Fish.new(fish.fish_name, fish.value, fish.health, fish.img, fish.lore)
+		get_tree().change_scene_to_file("res://game/scenes/shooting/shooting_phase.tscn")
+
+func set_bobber(bobber_pos) -> void:
+	bobber_location = bobber_pos
+	bobber_state = BobberState.SET
+	print(bobber_location)
+
+func unset_bobber() -> void:
+	bobber_state = BobberState.NOT_SET
+
+
+func _on_lake_boundaries_mouse_entered() -> void:
+	if bobber_state == BobberState.SET:
+		pass

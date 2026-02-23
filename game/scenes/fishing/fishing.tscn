@@ -11,11 +11,19 @@ font_size = 64
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_n7eig"]
-font_size = 45
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_f6nhs"]
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f6nhs"]
 size = Vector2(1211.5, 222)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_n7eig"]
+vertices = PackedVector2Array(958, 269.35156, 1024.2969, 313.54688, 1010.97656, 326.8672, 869.53906, 358.29688, 987.8594, 154, 1009.8594, 176, 958, 227.85938, 814.1875, 154, 268.27344, 294.71094, 128.20313, 263.57813, 123.359375, 244.24219, 196.82031, 192.82031, 293.3125, 152.61719, 758.9219, 389.89844, 318.95313, 358.46875, 304.2422, 321.6797, 348.5078, 105.28906, 504.14063, 74.171875, 685.3594, 105.67969)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 9, 10, 11, 12), PackedInt32Array(3, 13, 14, 15, 12, 16, 17, 18, 7, 6, 0), PackedInt32Array(15, 8, 12)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(344, 96, 504, 64, 688, 96, 816, 144, 992, 144, 1024, 176, 968, 232, 968, 264, 1040, 312, 1016, 336, 872, 368, 760, 400, 312, 368, 296, 328, 264, 304, 120, 272, 112, 240, 192, 184, 288, 144)])
 
 [node name="Fishing" type="Node2D" unique_id=1920484293]
 script = ExtResource("1_1mg86")
@@ -27,6 +35,7 @@ texture = ExtResource("5_n7eig")
 metadata/_edit_lock_ = true
 
 [node name="Fish" parent="." unique_id=1942758568 instance=ExtResource("5_f6nhs")]
+visible = false
 position = Vector2(-16, -48)
 
 [node name="Bait Count" type="Label" parent="." unique_id=1535396836]
@@ -38,35 +47,48 @@ text = "Total Bait"
 label_settings = SubResource("LabelSettings_i263x")
 
 [node name="Total Value" type="Label" parent="." unique_id=465480026]
-offset_left = 992.0
+offset_left = 928.0
 offset_top = 8.0
-offset_right = 1144.0
-offset_bottom = 71.0
+offset_right = 1016.0
+offset_bottom = 42.0
 text = "Weight"
 label_settings = SubResource("LabelSettings_n7eig")
+
+[node name="Required Weight Total" type="Label" parent="." unique_id=680729554]
+offset_left = 1040.0
+offset_top = 16.0
+offset_right = 1112.0
+offset_bottom = 40.0
+text = "Required"
+label_settings = SubResource("LabelSettings_f6nhs")
 
 [node name="Lake Boundaries" type="StaticBody2D" parent="." unique_id=1016460496]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Lake Boundaries" unique_id=2131008287]
-polygon = PackedVector2Array(287, 390, 256, 332, 62, 266, 56, 454, 1082, 509, 1072, 324, 1013, 368, 893, 389, 757, 430)
+polygon = PackedVector2Array(287, 390, 264, 344, 216, 320, 104, 296, 56, 256, 56, 454, 1082, 509, 1056, 344, 1016, 360, 893, 389, 768, 424)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Lake Boundaries" unique_id=106183690]
-polygon = PackedVector2Array(1007, 242, 1067, 154, 996, 116, 843, 118, 616, -6, 1167, -19, 1177, 481, 1066, 490, 1055, 346, 1075, 308)
+polygon = PackedVector2Array(1007, 242, 1016, 224, 1048, 184, 1064, 160, 1040, 136, 1000, 120, 840, 120, 616, -6, 1167, -19, 1177, 481, 1066, 490, 1055, 346, 1064, 336, 1072, 312)
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Lake Boundaries" unique_id=514315953]
-polygon = PackedVector2Array(84, 441, 60, 254, 125, 186, 270, 123, 328, 61, 340, 1, -17, -19, -16, 441)
+polygon = PackedVector2Array(84, 441, 64, 256, 125, 186, 270, 123, 328, 61, 340, 1, -17, -19, -16, 441)
 
 [node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Lake Boundaries" unique_id=937295642]
-polygon = PackedVector2Array(314, 68, 522, 39, 767, 94, 848, 123, 884, 44, 544, -21, 255, 0)
+polygon = PackedVector2Array(314, 68, 400, 40, 522, 39, 608, 48, 744, 88, 840, 120, 884, 44, 544, -21, 255, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lake Boundaries" unique_id=982726887]
 position = Vector2(577.25, 543)
 shape = SubResource("RectangleShape2D_f6nhs")
 
 [node name="Bobber" parent="." unique_id=1580847433 instance=ExtResource("4_n7eig")]
-position = Vector2(-60, 152.99998)
+position = Vector2(-207.99998, 136.00002)
 
 [node name="BiteTimer" type="Timer" parent="." unique_id=1723208164]
 
 [node name="Fish Dictionary" type="Node" parent="." unique_id=1597366368]
 script = ExtResource("7_j3aex")
+
+[node name="Fish Move Area" type="NavigationRegion2D" parent="." unique_id=547630563]
+navigation_polygon = SubResource("NavigationPolygon_n7eig")
+
+[connection signal="mouse_entered" from="Lake Boundaries" to="." method="_on_lake_boundaries_mouse_entered"]

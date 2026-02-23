@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://83iqaojexvhg" path="res://game/scenes/shopping/shopping_menu.gd" id="1_bl3e4"]
 [ext_resource type="Script" uid="uid://dr5ykvpx7yvvd" path="res://game/scenes/shopping/inventory.gd" id="1_sn45h"]
+[ext_resource type="PackedScene" uid="uid://yqph571u6cpw" path="res://game/scenes/shopping/blacksmith.tscn" id="2_b6u2u"]
 [ext_resource type="Script" uid="uid://cmgpngxsyhvv1" path="res://game/scenes/shopping/item.gd" id="3_ghdg7"]
+[ext_resource type="PackedScene" uid="uid://can0iqaqrn3fs" path="res://game/scenes/shopping/shop.tscn" id="3_ydbwc"]
 [ext_resource type="Script" uid="uid://blqj3wwp1f2dk" path="res://game/scenes/shopping/item_catalogue.gd" id="4_xejfy"]
 
 [node name="Shopping Menu" type="Control" unique_id=68397610]
@@ -14,30 +16,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bl3e4")
 
+[node name="Blacksmith" parent="." unique_id=974088349 instance=ExtResource("2_b6u2u")]
+layout_mode = 0
+
+[node name="Shop" parent="." unique_id=1294004998 instance=ExtResource("3_ydbwc")]
+layout_mode = 0
+
 [node name="Inventory" type="Node" parent="." unique_id=1743700848]
 script = ExtResource("1_sn45h")
-
-[node name="Label" type="Label" parent="." unique_id=2052194999]
-layout_mode = 0
-offset_left = 488.0
-offset_top = 32.0
-offset_right = 664.0
-offset_bottom = 55.0
-text = "Welcome to the Shop"
-horizontal_alignment = 1
-
-[node name="Button" type="Button" parent="." unique_id=697041299]
-layout_mode = 0
-offset_left = 817.0
-offset_top = 595.0
-offset_right = 1145.0
-offset_bottom = 643.0
-text = "Back to Fishing"
 
 [node name="Item" type="Node" parent="." unique_id=20673062]
 script = ExtResource("3_ghdg7")
 
-[node name="Item Catalogue" type="Node" parent="." unique_id=2098231282]
+[node name="Item Catalogue" type="Node" parent="." unique_id=589489581]
 script = ExtResource("4_xejfy")
-
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

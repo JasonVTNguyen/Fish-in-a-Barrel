@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://crnvk4v2o88fy" path="res://game/bg/skybg.png" id="2_pk8i0"]
 [ext_resource type="PackedScene" uid="uid://cnax1gwgf4prw" path="res://game/scenes/shooting/target_fish.tscn" id="3_56a43"]
 [ext_resource type="PackedScene" uid="uid://qvfrpgb15r2x" path="res://game/scenes/shooting/weapons/gun.tscn" id="4_d8do8"]
+[ext_resource type="PackedScene" uid="uid://djkstre63q2jj" path="res://game/modifier_handler/modifier_handler.tscn" id="5_pk8i0"]
+[ext_resource type="PackedScene" uid="uid://bsj0x6omnlkpw" path="res://game/modifier_handler/modifier.tscn" id="6_q4mg4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4wif6"]
 bg_color = Color(0.9999997, 0.16517359, 0.1934779, 1)
@@ -37,7 +39,7 @@ bounce = 0.3
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q4mg4"]
 size = Vector2(69.5, 1231.5)
 
-[node name="Shooting Phase" type="Node2D" unique_id=2124557051 groups=["Gun"]]
+[node name="Shooting Phase" type="Node2D" unique_id=2124557051]
 script = ExtResource("1_3kdxj")
 
 [node name="SkyBG" type="Sprite2D" parent="." unique_id=384684351]
@@ -49,7 +51,7 @@ metadata/_edit_lock_ = true
 [node name="Target Fish" parent="." unique_id=1369185684 instance=ExtResource("3_56a43")]
 position = Vector2(160, 856)
 
-[node name="Gun" parent="." unique_id=1044033806 groups=["Gun"] instance=ExtResource("4_d8do8")]
+[node name="Gun" parent="." unique_id=1044033806 instance=ExtResource("4_d8do8")]
 scale = Vector2(0.425, 0.425)
 
 [node name="HUD Elements" type="Control" parent="." unique_id=859015552]
@@ -57,6 +59,14 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Switch Weapon Bar" type="ProgressBar" parent="HUD Elements" unique_id=661921244]
+layout_mode = 0
+offset_left = 912.0
+offset_top = 544.0
+offset_right = 1096.0
+offset_bottom = 571.0
+show_percentage = false
 
 [node name="DPS Label" type="Label" parent="HUD Elements" unique_id=1033671891]
 layout_mode = 0
@@ -160,5 +170,12 @@ one_shot = true
 
 [node name="FireRateTimer" type="Timer" parent="." unique_id=2046140892]
 one_shot = true
+
+[node name="SwitchTimer" type="Timer" parent="." unique_id=1130224390]
+one_shot = true
+
+[node name="ModifierHandler" parent="." unique_id=813565283 instance=ExtResource("5_pk8i0")]
+
+[node name="DamageModifier" parent="ModifierHandler" unique_id=1559025709 instance=ExtResource("6_q4mg4")]
 
 [connection signal="area_entered" from="Boundaries/Boundary Areas" to="Target Fish" method="_on_boundary_areas_area_entered"]

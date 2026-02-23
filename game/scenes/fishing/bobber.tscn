@@ -15,6 +15,7 @@ texture = ExtResource("1_hmi3o")
 script = ExtResource("2_kh2sh")
 
 [node name="Attraction Range" type="Area2D" parent="." unique_id=115710734]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attraction Range" unique_id=2030451897]
 shape = SubResource("CircleShape2D_j3aex")
@@ -27,4 +28,3 @@ shape = SubResource("CircleShape2D_hmi3o")
 debug_color = Color(0.704155, 0.35361308, 0.85866904, 0.41960785)
 
 [connection signal="area_entered" from="Attraction Range" to="." method="_on_attraction_range_area_entered"]
-[connection signal="area_entered" from="Fish Collider" to="." method="_on_fish_collider_area_entered"]

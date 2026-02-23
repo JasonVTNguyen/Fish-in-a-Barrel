@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://can0iqaqrn3fs"]
+
+[ext_resource type="Script" uid="uid://cdae1n3fk48r5" path="res://game/scenes/shopping/shop.gd" id="1_gcpnk"]
+
+[node name="Shop" type="Control" unique_id=1294004998]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_gcpnk")
+
+[node name="Start Next Round Button" type="Button" parent="." unique_id=1567259795]
+layout_mode = 0
+offset_left = 848.0
+offset_top = 600.0
+offset_right = 1144.0
+offset_bottom = 640.0
+text = "Back to Fishing"
+
+[node name="Blacksmith Button" type="Button" parent="." unique_id=1128102448]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 600.0
+offset_right = 192.0
+offset_bottom = 640.0
+text = "Blacksmith"
+
+[connection signal="pressed" from="Start Next Round Button" to="." method="_on_start_next_round_button_pressed"]
+[connection signal="pressed" from="Blacksmith Button" to="." method="_on_blacksmith_button_pressed"]

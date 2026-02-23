@@ -1,5 +1,12 @@
 extends Node
 
+var items : Dictionary[int, Item] = {
+	
+}
+
+var weapons : Dictionary[int, Gun] = {
+	
+}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

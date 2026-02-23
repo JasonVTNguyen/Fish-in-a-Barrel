@@ -1,15 +1,16 @@
-extends Sprite2D
+extends Node2D
 
 class_name Gun
 
-var gun_name : String
-var damage : int 
-var cap_ammo : int
-var max_ammo : int
-var cur_ammo : int
-var mag_size : int
-var reload_time : float
-var fire_rate : float
+
+var gun_name : String # Name of the Gun
+var damage : int # Base Damage before Modifier
+var cap_ammo : int # How much Ammo can fit in Reserves
+var max_ammo : int # How much Ammo is in Reserves 
+var cur_ammo : int # How much Ammo is currently in the magazine
+var mag_size : int # How much Ammo can fit in Magazine
+var reload_time : float # How long it takes to reload
+var fire_rate : float 
 
 var is_reloading : bool = false
 
@@ -26,12 +27,12 @@ func _init(c_gun_name : String = "Test Gun", c_damage : int = 0, c_cap_ammo : in
 	reload_time = c_reload_time
 
 
-func check_can_fire_gun():
+func check_can_fire_gun() -> bool:
 	if cur_ammo > 0:
 		return true
 	return false
 
-func check_no_more_ammo():
+func check_no_more_ammo() -> bool:
 	if max_ammo <= 0 and cur_ammo <= 0:
 		return true
 	return false
@@ -47,10 +48,16 @@ func fire_gun():
 	if check_can_fire_gun():
 		cur_ammo -= 1
 	
-func reload_gun():
+func reload_gun() -> void:
 	var give_ammo = reload_calculation()
 	max_ammo -= give_ammo
 	cur_ammo += give_ammo
+
+func add_to_ammo_capacity(ammo : int) -> void:
+	if max_ammo + ammo > cap_ammo:
+		max_ammo = cap_ammo
+	else:
+		max_ammo += ammo
 
 func _to_string() -> String:
 	return "Gun Name: " + gun_name + ", Damage: " + str(damage)

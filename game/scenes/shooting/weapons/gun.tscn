@@ -2,14 +2,18 @@
 
 [ext_resource type="Texture2D" uid="uid://dyyaiog7xqi1g" path="res://game/sprites/reticle.png" id="1_fpyx4"]
 [ext_resource type="Script" uid="uid://uwm4ijfvidg7" path="res://game/scenes/shooting/weapons/gun.gd" id="1_smfaa"]
+[ext_resource type="PackedScene" uid="uid://djkstre63q2jj" path="res://game/modifier_handler/modifier_handler.tscn" id="3_oa8x4"]
+[ext_resource type="PackedScene" uid="uid://bsj0x6omnlkpw" path="res://game/modifier_handler/modifier.tscn" id="4_f35wu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fpyx4"]
 radius = 101.0
 height = 202.0
 
-[node name="Gun" type="Sprite2D" unique_id=1044033806]
-texture = ExtResource("1_fpyx4")
+[node name="Gun" type="Node2D" unique_id=740992978]
 script = ExtResource("1_smfaa")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1374457730]
+texture = ExtResource("1_fpyx4")
 
 [node name="Damage Radius" type="Area2D" parent="." unique_id=428329084]
 scale = Vector2(2, 2)
@@ -17,6 +21,9 @@ scale = Vector2(2, 2)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Damage Radius" unique_id=384972984]
 shape = SubResource("CapsuleShape2D_fpyx4")
 
+[node name="ModifierHandler" parent="." unique_id=813565283 instance=ExtResource("3_oa8x4")]
+
+[node name="DamageModifier" parent="ModifierHandler" unique_id=1559025709 instance=ExtResource("4_f35wu")]
+
 [connection signal="area_entered" from="Damage Radius" to="." method="_on_damage_radius_area_entered"]
 [connection signal="area_exited" from="Damage Radius" to="." method="_on_damage_radius_area_exited"]
-[connection signal="area_shape_entered" from="Damage Radius" to="." method="_on_damage_radius_area_shape_entered"]

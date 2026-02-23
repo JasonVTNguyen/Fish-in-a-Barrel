@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://yqph571u6cpw"]
+
+[ext_resource type="Script" uid="uid://bkg128qxjnkw6" path="res://game/scenes/shopping/blacksmith.gd" id="1_eekjm"]
+
+[node name="Blacksmith" type="Control" unique_id=974088349]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_eekjm")
+
+[node name="To Shop Button" type="Button" parent="." unique_id=1453869757]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 600.0
+offset_right = 192.0
+offset_bottom = 640.0
+text = "To Shop"
+
+[connection signal="pressed" from="To Shop Button" to="." method="_on_to_shop_button_pressed"]

@@ -1,12 +1,15 @@
 extends Node2D
 
+@onready var modifier_handler: ModifierHandler = $ModifierHandler
+
 @onready var health_bar: ProgressBar = $"HUD Elements/Health Bar"
 @onready var reload_bar: ProgressBar = $"HUD Elements/Reload Bar"
 @onready var fire_rate_bar: ProgressBar = $"HUD Elements/FireRate Bar"
+@onready var switch_weapon_bar: ProgressBar = $"HUD Elements/Switch Weapon Bar"
 
 @onready var reload_timer: Timer = $ReloadTimer
-
 @onready var fire_rate_timer : Timer = $FireRateTimer
+@onready var switch_timer: Timer = $SwitchTimer
 
 var current_gun : Gun
 var new_target : Target_Fish
@@ -18,7 +21,7 @@ var reload_time : float = 0
 @export var _fire_rate : int = 1
 
 const switchGun : int = 2000
-var hold_timer
+var hold_timer : float = 0
 
 
 func _ready() -> void:
@@ -32,49 +35,34 @@ func _ready() -> void:
 	print(current_gun)
 	$"HUD Elements/Reload Bar".max_value = current_gun.reload_time
 	$"HUD Elements/FireRate Bar".max_value = current_gun.fire_rate
-	
+	$"HUD Elements/Switch Weapon Bar".max_value = 1
 
 func _process(delta: float) -> void:
-	#if Input.is_action_pressed("Shoot"):
-		#if fire_rate_timer.is_stopped():
-			#if GameController.gun_state == GameController.GunState.HIT and reload_timer.is_stopped():	
-				#if update_damage():
-					#$"Target Fish".target_hit()
-			#if reload_timer.is_stopped():
-				#if current_gun.fire_gun():
-					#print("gun shot")
-			#fire_rate_timer.start(current_gun.fire_rate/60)
-	if Input.is_action_just_pressed("Switch Weapons"):
-		if hold_timer < 1:
-			hold_timer += delta
-	elif Input.is_action_just_released("Reload"):
-			if hold_timer >= 0.5:
-				if current_gun == GameController.primary_gun:
-					current_gun = GameController.secondary_gun
-				else:
-					current_gun = GameController.primary_gun
-					$"HUD Elements/Reload Bar".max_value = current_gun.reload_time
-					$"HUD Elements/FireRate Bar".max_value = current_gun.fire_rate
-				print("Switch Weapons")
-			else:
-				current_gun.reload_gun()
-				reload_time = current_gun.reload_time
-				reload_timer.start(current_gun.reload_time)
-			hold_timer = 0
-	else:
-		hold_timer = 0
 	if new_target.target_cur_health <= 0:
 		target_dead()
 	update_labels()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Shoot"):
-		if GameController.gun_state == GameController.GunState.HIT and reload_timer.is_stopped():	
+		if GameController.gun_state == GameController.GunState.HIT and reload_timer.is_stopped() and switch_timer.is_stopped():
 			if update_damage():
 				$"Target Fish".target_hit()
-		if reload_timer.is_stopped():
+		if reload_timer.is_stopped() and switch_timer.is_stopped():
 			if current_gun.fire_gun():
 				print("gun shot")
+	elif event.is_action_pressed("Reload"):
+		current_gun.reload_gun()
+		reload_time = current_gun.reload_time
+		reload_timer.start(current_gun.reload_time)
+	elif event.is_action_pressed("Switch Weapons") and GameController.secondary_gun:
+		if current_gun == GameController.primary_gun:
+			current_gun = GameController.secondary_gun
+		else:
+			current_gun = GameController.primary_gun
+			$"HUD Elements/Reload Bar".max_value = current_gun.reload_time
+			$"HUD Elements/FireRate Bar".max_value = current_gun.fire_rate
+		print("Switch Weapons")
+		switch_timer.start(1)
 	update_labels()
 
 func target_dead():
@@ -83,7 +71,7 @@ func target_dead():
 	if GameController.current_bait > 0:
 		get_tree().change_scene_to_file("res://game/scenes/fishing/fishing.tscn")
 	else:
-		get_tree().change_scene_to_file("res://game/scenes/shopping/shopping_menu.tscn")
+		get_tree().change_scene_to_file("res://game/scenes/shopping/shop.tscn")
 
 func damage_calculation():
 	var damage : int = current_gun.damage
@@ -102,12 +90,14 @@ func update_damage():
 func update_labels() -> void:
 	$"HUD Elements/Reload Bar".value = reload_timer.time_left
 	$"HUD Elements/FireRate Bar".value = fire_rate_timer.time_left
+	$"HUD Elements/Switch Weapon Bar".value = switch_timer.time_left
 	$"HUD Elements/Weapon Name".text = str(current_gun.gun_name)
 	$"HUD Elements/Fish Health".text = str(new_target.target_cur_health) + " / " + str(new_target.target_max_health)
 	$"HUD Elements/Fish Name".text = str(GameController.currentFish.fish_name)
 	$"HUD Elements/Ammo".text = "Ammo: " + str(current_gun.cur_ammo) + " / " + str(current_gun.mag_size) + " / " + str(current_gun.max_ammo)
 	$"HUD Elements/DPS Label".text = "You have done " + str(total_damage)+ " damage."
 	$"HUD Elements/Fish Health".text = str(new_target.target_cur_health) + " / " + str(new_target.target_max_health)
+	
 	if not current_gun.check_can_fire_gun():
 		$"HUD Elements/Ammo".text = "RELOAD!"
 	if current_gun.check_no_more_ammo():
