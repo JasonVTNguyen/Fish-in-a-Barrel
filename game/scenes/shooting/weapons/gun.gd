@@ -2,7 +2,6 @@ extends Node2D
 
 class_name Gun
 
-
 var gun_name : String # Name of the Gun
 var damage : int # Base Damage before Modifier
 var cap_ammo : int # How much Ammo can fit in Reserves
@@ -13,6 +12,8 @@ var reload_time : float # How long it takes to reload
 var fire_rate : float 
 
 var is_reloading : bool = false
+
+var gun_upgrades : Inventory
 
 func _process(delta: float) -> void:
 	position = get_viewport().get_mouse_position()
@@ -25,7 +26,6 @@ func _init(c_gun_name : String = "Test Gun", c_damage : int = 0, c_cap_ammo : in
 	cur_ammo = c_mag_size
 	mag_size = c_mag_size
 	reload_time = c_reload_time
-
 
 func check_can_fire_gun() -> bool:
 	if cur_ammo > 0:
@@ -52,6 +52,9 @@ func reload_gun() -> void:
 	var give_ammo = reload_calculation()
 	max_ammo -= give_ammo
 	cur_ammo += give_ammo
+
+func damage_calculation() -> float:
+	return damage
 
 func add_to_ammo_capacity(ammo : int) -> void:
 	if max_ammo + ammo > cap_ammo:

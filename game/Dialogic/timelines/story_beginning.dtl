@@ -3,3 +3,6 @@ narrator: Penguins would get up from bed, go out to bask in the warm sunlight, e
 narrator: But for one penguin, their morning would start off... stranger than usual.
 [wait time="1.0"]
 *knocks*
+[wait time="1.0"]
+*knocks* *knocks*
+narrator: <Empty Text Event>

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bxrch2njva0ms"]
+
+[ext_resource type="Script" uid="uid://pd062t4odcjl" path="res://game/scenes/shopping/upgrades/upgrade.gd" id="1_arwm5"]
+
+[node name="Upgrade" type="Node" unique_id=1033747743]
+script = ExtResource("1_arwm5")

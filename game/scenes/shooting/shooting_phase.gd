@@ -75,7 +75,7 @@ func target_dead():
 
 func damage_calculation():
 	var damage : int = current_gun.damage
-	return damage
+	return floor(damage)
 
 func update_damage():
 	if current_gun.check_can_fire_gun():
