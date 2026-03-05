@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b1l1txm2j22o5"]
+
+[ext_resource type="Script" uid="uid://cp8okqdvc3njc" path="res://game/scenes/shopping/gun_upgrades.gd" id="1_r6lf3"]
+
+[node name="Gun Upgrades" type="Node" unique_id=1921647884]
+script = ExtResource("1_r6lf3")

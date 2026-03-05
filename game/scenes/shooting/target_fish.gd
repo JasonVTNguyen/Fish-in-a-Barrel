@@ -9,7 +9,7 @@ var target_cur_health : int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	self.apply_impulse(Vector2(0,-550))
+	self.apply_impulse(Vector2(150,-550))
 	self.gravity_scale = 0.3
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -38,4 +38,15 @@ func _on_boundary_areas_area_entered(area: Area2D) -> void:
 	if GameController.current_bait >= 1:
 		get_tree().change_scene_to_file("res://game/scenes/fishing/fishing.tscn")
 	else:
-		get_tree().change_scene_to_file("res://game/scenes/shopping/shopping_menu.tscn")
+		print("Total Value: " + str(GameController.total_value))
+		print("Round Goal: " + str(GameController.story_round_objectives.get(GameController.current_round)))
+		if GameController.total_value >= GameController.story_round_objectives.get(GameController.current_round):
+			print("Value Exceeded.")
+			GameController.money += GameController.total_value
+			GameController.total_value = 0.0
+			GameController.current_round += 1
+			get_tree().change_scene_to_file("res://game/scenes/shopping/shop.tscn")
+		else:
+			print("Game Over")
+			get_tree().change_scene_to_file("res://game/scenes/mainmenu/main_menu.tscn")
+			

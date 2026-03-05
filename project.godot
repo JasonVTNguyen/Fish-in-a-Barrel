@@ -23,6 +23,8 @@ config/icon="res://icon.svg"
 
 GameController="*uid://cf3oq2s84dj7"
 Dialogic="*uid://ds2q0uclmolvu"
+Catalogue="*uid://vmv1astk8kkg"
+FishDictionary="*uid://7k0ss52vhvmq"
 
 [dialogic]
 

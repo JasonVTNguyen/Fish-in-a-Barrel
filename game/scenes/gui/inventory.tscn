@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cnctdm4qoh7yt"]
+
+[ext_resource type="Script" uid="uid://dr5ykvpx7yvvd" path="res://game/scenes/shopping/inventory.gd" id="1_jfhyk"]
+
+[node name="Inventory" type="Control" unique_id=441917759]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jfhyk")
+
+[node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=1081126462]

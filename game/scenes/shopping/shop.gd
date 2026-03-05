@@ -1,9 +1,17 @@
 extends Control
 
+var bait_price_box : Dictionary[int, float] = {
+	1 : 50.0,
+	2 : 50.0,
+	3 : 50.0,
+	4 : 250.0,
+	5 : 1000.0,
+}
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	update_values()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -18,3 +26,14 @@ func _on_start_next_round_button_pressed() -> void:
 
 func _on_blacksmith_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://game/scenes/shopping/blacksmith.tscn")
+
+
+func _on_buy_bait_button_pressed() -> void:
+	var bait_cost = bait_price_box.get(GameController.total_bait)
+	if GameController.money >= bait_cost:
+		GameController.total_bait += 1
+		GameController.money -= bait_cost
+	update_values()
+		
+func update_values() -> void:
+	$Money.text = "Cash: " + str(GameController.money)

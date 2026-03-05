@@ -6,6 +6,7 @@ extends Node2D
 @onready var reload_bar: ProgressBar = $"HUD Elements/Reload Bar"
 @onready var fire_rate_bar: ProgressBar = $"HUD Elements/FireRate Bar"
 @onready var switch_weapon_bar: ProgressBar = $"HUD Elements/Switch Weapon Bar"
+@onready var gunshot_particles: CPUParticles2D = $"Gunshot Particles"
 
 @onready var reload_timer: Timer = $ReloadTimer
 @onready var fire_rate_timer : Timer = $FireRateTimer
@@ -32,6 +33,9 @@ func _ready() -> void:
 	current_gun = GameController.primary_gun
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	update_labels()
+	
+	#current_gun.append_to_gun_upgrades(Catalogue.weapon_upgrades.get(0))
+	
 	print(current_gun)
 	$"HUD Elements/Reload Bar".max_value = current_gun.reload_time
 	$"HUD Elements/FireRate Bar".max_value = current_gun.fire_rate
@@ -46,15 +50,20 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Shoot"):
 		if GameController.gun_state == GameController.GunState.HIT and reload_timer.is_stopped() and switch_timer.is_stopped():
 			if update_damage():
+			
+				#self.add_child(gunshot_particles)
+				gunshot_particles.emitting = false
+				gunshot_particles.position = $Gun.position
+				
+				gunshot_particles.emitting = true
 				$"Target Fish".target_hit()
 		if reload_timer.is_stopped() and switch_timer.is_stopped():
-			if current_gun.fire_gun():
-				print("gun shot")
+			current_gun.fire_gun()
 	elif event.is_action_pressed("Reload"):
 		current_gun.reload_gun()
 		reload_time = current_gun.reload_time
 		reload_timer.start(current_gun.reload_time)
-	elif event.is_action_pressed("Switch Weapons") and GameController.secondary_gun:
+	elif event.is_action_pressed("Switch Weapons") and GameController.secondary_gun and switch_timer.is_stopped():
 		if current_gun == GameController.primary_gun:
 			current_gun = GameController.secondary_gun
 		else:
@@ -71,10 +80,26 @@ func target_dead():
 	if GameController.current_bait > 0:
 		get_tree().change_scene_to_file("res://game/scenes/fishing/fishing.tscn")
 	else:
-		get_tree().change_scene_to_file("res://game/scenes/shopping/shop.tscn")
-
+		print("Total Value: " + str(GameController.total_value))
+		print("Round Goal: " + str(GameController.story_round_objectives.get(GameController.current_round)))
+		if GameController.total_value >= GameController.story_round_objectives.get(GameController.current_round):
+			print("Value Exceeded.")
+			GameController.money += GameController.total_value
+			GameController.total_value = 0.0
+			GameController.current_round += 1
+			get_tree().change_scene_to_file("res://game/scenes/shopping/shop.tscn")
+		else:
+			print("Game Over")
+			get_tree().change_scene_to_file("res://game/scenes/mainmenu/main_menu.tscn")
+			
 func damage_calculation():
+	#print("Damage Dealt")
+	#print(current_gun.gun_upgrades)
 	var damage : int = current_gun.damage
+	for upgrade in current_gun.gun_upgrades: # Flat Value Handler
+		if upgrade is Bullet_Upgrade:
+			damage += upgrade.flat_dmg
+	
 	return floor(damage)
 
 func update_damage():
@@ -95,7 +120,6 @@ func update_labels() -> void:
 	$"HUD Elements/Fish Health".text = str(new_target.target_cur_health) + " / " + str(new_target.target_max_health)
 	$"HUD Elements/Fish Name".text = str(GameController.currentFish.fish_name)
 	$"HUD Elements/Ammo".text = "Ammo: " + str(current_gun.cur_ammo) + " / " + str(current_gun.mag_size) + " / " + str(current_gun.max_ammo)
-	$"HUD Elements/DPS Label".text = "You have done " + str(total_damage)+ " damage."
 	$"HUD Elements/Fish Health".text = str(new_target.target_cur_health) + " / " + str(new_target.target_max_health)
 	
 	if not current_gun.check_can_fire_gun():

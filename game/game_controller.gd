@@ -5,23 +5,28 @@ extends Node
 var inventory : Inventory
 var currentFish : Fish
 var total_value : float = 0.0
+var money : float = 0.0
 var total_bait : int = 3
+var current_round : int = 0
 
 var current_bait : int = 3
 var primary_gun : Gun = Gun.new("Pistol", 5, 5000, 20, 10)
-var secondary_gun : Gun  = Gun.new("Shotgun", 55, 5000, 20, 10)
+var primary_gun_upgrades : Array[Upgrade] = []
+
+var secondary_gun : Gun  #= Gun.new("Shotgun", 55, 5000, 20, 10)
+var secondary_gun_upgrades : Array[Upgrade] = []
 
 var story_round_objectives : Dictionary[int,float] = {
 	0 : 10.0,
-	1 : 20.0,
-	2 : 30.0,
-	3 : 40.0,
-	4 : 50.0,
-	5 : 60.0,
-	6 : 70.0,
-	7 : 80.0,
-	8 : 90.0,
-	9 : 200.0,
+	1 : 50.0,
+	2 : 100.0,
+	3 : 200.0,
+	4 : 500.0,
+	5 : 1250.0,
+	6 : 5000.0,
+	7 : 10000.0,
+	8 : 25000.0,
+	9 : 50000.0,
 }
 
 enum GunState {HIT, MISS}
@@ -42,5 +47,7 @@ func reset_game():
 	inventory = Inventory.new()
 	currentFish = Fish.new()
 	total_value = 0.0
+	money = 0.0
 	total_bait = 3
 	current_bait = 3
+	current_round = 0

@@ -2,12 +2,11 @@ extends Node
 
 class_name Inventory
 
-var items : Array
+var items : Array[Item]
 
 func add_item(item) -> void:
 	items.append(item)
 	
-
 func remove_item(item) -> void:
 	var item_loc : int = find_item(item)
 	if item_loc:

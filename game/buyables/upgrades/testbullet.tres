@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Bullet_Upgrade" format=3 uid="uid://3k5rhgpcket2"]
+
+[ext_resource type="Script" uid="uid://0qvqkpde846s" path="res://game/buyables/upgrades/bullet_upgrade.gd" id="1_difjr"]
+
+[resource]
+script = ExtResource("1_difjr")
+metadata/_custom_type_script = "uid://0qvqkpde846s"

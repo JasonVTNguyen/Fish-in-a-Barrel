@@ -3,6 +3,8 @@ class_name Fish
 
 @onready var fishing_scene : Node2D = get_parent()
 @onready var bobber_scene : Sprite2D = $"../Bobber"
+@onready var target_position: Marker2D = $TargetPosition
+@onready var ray_cast_2d: RayCast2D = $RayCast2D
 
 var screen_size = Vector2(1152,648)
 var r_x = randi_range(200, 960)
@@ -17,7 +19,7 @@ var lore : String
 var move_distance : float = 0.0
 var move_angle : float = 0.0
 
-var target_destination : Vector2 = Vector2.ZERO
+var target_destination : Vector2 = self.position
 
 enum State { WANDER, ATTRACT, STOP }
 var state : State = State.WANDER
@@ -36,9 +38,12 @@ func _ready() -> void:
 	set_new_target_destination()
 
 func _physics_process(delta: float) -> void:
+	if self.position.x <= -10 or self.position.x >= screen_size.x + 10 or self.position.y <= -10 or self.position.y >= screen_size.y + 10:
+		self.position = Vector2(screen_size.x / 2, screen_size.y / 2)
 	match state:
 		State.WANDER:
 			if self.position == target_destination:
+				#print("Arrived")
 				set_new_target_destination()
 		State.ATTRACT:
 			if self.position == target_destination:
@@ -47,6 +52,8 @@ func _physics_process(delta: float) -> void:
 			velocity = Vector2.ZERO
 			move_and_slide()
 	self.position = self.position.move_toward(target_destination, 25 * delta)
+	#print("Position: " + str(position))
+	#print(ray_cast_2d.is_colliding())
 	
 func movement_choice() -> void:
 	var choice = randi_range(1,2)
@@ -61,10 +68,25 @@ func _to_string() -> String:
 
 func set_new_target_destination() -> void:
 	if state == State.WANDER:
-		target_destination = Vector2(randi_range(200, 960), self.position.y + randi_range(-50,50))
+		#ray_cast_2d.enabled = true
+		while true:
+			var new_relative_vector : Vector2 = Vector2(randi_range(-100, 100), randi_range(-50,50))
+			ray_cast_2d.target_position = new_relative_vector
+			if ray_cast_2d.is_colliding():
+				pass
+			#print("New Target Position: "+str(position + new_relative_vector))
+			target_destination = self.position + new_relative_vector
+			#print("New Target Destination: "+str(target_destination))
+			break
+			#ray_cast_2d.enabled = false
+			
 	elif state == State.ATTRACT:
 		target_destination = bobber_scene.position
-
+	#if not ray_cast_2d.is_colliding():
+		#set_new_target_destination()
+	#else:
+	
+		
 func set_attract_mode() -> void:
 	if not state == State.ATTRACT:
 		state = State.ATTRACT

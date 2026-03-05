@@ -9,8 +9,10 @@ var bobber_state = BobberState.NOT_SET
 
 
 func _ready() -> void:
+	print("Fishing Scene Ready")
 	$"Bait Count".text = str(GameController.current_bait)
 	$"Total Value".text = str(GameController.total_value)
+	$"Required Weight Total".text = str(GameController.story_round_objectives.get(GameController.current_round))
 	for i in range(5):
 		spawn_fish()
 
@@ -32,7 +34,7 @@ func randomize_fish(new_fish : Fish) -> void:
 
 func makeFish(fish):
 	if bobber_state == BobberState.SET:
-		print("Making Fish")
+		#print("Making Fish")
 		GameController.current_bait -= 1
 		GameController.currentFish = Fish.new(fish.fish_name, fish.value, fish.health, fish.img, fish.lore)
 		get_tree().change_scene_to_file("res://game/scenes/shooting/shooting_phase.tscn")
@@ -49,3 +51,7 @@ func unset_bobber() -> void:
 func _on_lake_boundaries_mouse_entered() -> void:
 	if bobber_state == BobberState.SET:
 		pass
+
+
+func _on_skip_to_shop_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://game/scenes/shopping/shop.tscn")

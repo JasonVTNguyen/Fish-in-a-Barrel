@@ -17,4 +17,40 @@ offset_right = 192.0
 offset_bottom = 640.0
 text = "To Shop"
 
+[node name="Buy Ammo Button" type="Button" parent="." unique_id=1048144131]
+layout_mode = 0
+offset_left = 903.0
+offset_top = 586.0
+offset_right = 1134.0
+offset_bottom = 632.0
+text = "Buy Ammo"
+
+[node name="Money" type="Label" parent="." unique_id=523980686]
+layout_mode = 0
+offset_left = 351.0
+offset_top = 603.0
+offset_right = 760.0
+offset_bottom = 626.0
+text = "Money"
+
+[node name="Buy Weapon Button" type="Button" parent="." unique_id=2058136637]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 510.0
+offset_right = 320.0
+offset_bottom = 573.0
+text = "Buy Weapon"
+
+[node name="Description Text" type="Label" parent="." unique_id=933545156]
+layout_mode = 0
+offset_left = 323.0
+offset_top = 11.0
+offset_right = 1015.0
+offset_bottom = 185.0
+text = "Description"
+
 [connection signal="pressed" from="To Shop Button" to="." method="_on_to_shop_button_pressed"]
+[connection signal="pressed" from="Buy Ammo Button" to="." method="_on_buy_ammo_button_pressed"]
+[connection signal="mouse_entered" from="Buy Weapon Button" to="." method="_on_buy_weapon_button_mouse_entered"]
+[connection signal="mouse_exited" from="Buy Weapon Button" to="." method="_on_buy_weapon_button_mouse_exited"]
+[connection signal="pressed" from="Buy Weapon Button" to="." method="_on_buy_weapon_button_pressed"]

@@ -1,8 +1,33 @@
 narrator: It was a calm and peaceful morning in Iceberg Village.
-narrator: Penguins would get up from bed, go out to bask in the warm sunlight, eat delicious food, and talk with their neighbours.
-narrator: But for one penguin, their morning would start off... stranger than usual.
+narrator: Penguins would get up from bed, go out to bask in the warm sunlight, eat delicious food, and talk with their neighbours. Life was simple.
+narrator: At least, back then it was.
+narrator: Nowadays, Iceberg Village was quite the progressive little place.
+narrator: "Technology was on the rise!", "Penguin Society changed for better?",  such headlines appearing in the newspaper.
+narrator: Oh yeah, they have newspapers. Ever since like, a week ago.
+narrator: For some, life changed, for others, not really.
 [wait time="1.0"]
+narrator: This is Bean, a young penguin making his way into adulthood.
+narrator: Ever since moving out of his parent's house X years ago, Bean been getting his extra 5 minutes of sleep every morning.
+narrator: Unfortunately for him, this morning would start off... stranger than usual.
 *knocks*
 [wait time="1.0"]
-*knocks* *knocks*
-narrator: <Empty Text Event>
+*knocks*
+narrator: The knocking quieted down after a while.
+narrator: Bean tucks himself back into bed and tries to go back to sleep.
+[wait time="1.0"]
+narrator: Until suddenly, a bunch of penguins in black decided to break down his door!
+narrator: Bean still surprised, could only helplessly struggle as he was carried off to the mayor's house.
+mayor: Hello, young Bean. I see my men have taken plan B.
+mayor: We were hoping you would come volutarily, but alas, this is too important to ignore.
+mayor: You see Bean, here in Iceberg Village, every bird at the age of 3 is required by law to pay their taxes.
+narrator: Bean, who thought his life was so simple, didn't understand what this chirp was talking about.
+mayor: What? You don't know what taxes are?
+narrator: The mayor placed a flipper on their chest in shock.
+mayor: Well, I'm sure you can figure it out. You are a smart chap after all.
+mayor: Anyways, we realized that you have been behind on paying your taxes.
+mayor: Since well, forever.
+mayor: Now normally, you would be sent off to prison for tax evasion, but consider yourself one lucky bird!
+mayor: Your father's been a good friend to me, so I'm willing to allow you to pay your overdue taxes in installments.
+mayor: Of course, should you default at any point, you will have to be put under arrest. Nothing else I can do from there I'm afraid.
+mayor: Let's see... you're 43 years old..., if we include utilities from your house... Factor in your income...
+mayor: <Empty Text Event>

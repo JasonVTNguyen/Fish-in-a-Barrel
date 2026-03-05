@@ -6,14 +6,15 @@
 [ext_resource type="PackedScene" uid="uid://bsj0x6omnlkpw" path="res://game/modifier_handler/modifier.tscn" id="4_f35wu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fpyx4"]
-radius = 101.0
-height = 202.0
+radius = 23.0
+height = 47.0
 
 [node name="Gun" type="Node2D" unique_id=740992978]
 script = ExtResource("1_smfaa")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1374457730]
 texture = ExtResource("1_fpyx4")
+metadata/_edit_lock_ = true
 
 [node name="Damage Radius" type="Area2D" parent="." unique_id=428329084]
 scale = Vector2(2, 2)

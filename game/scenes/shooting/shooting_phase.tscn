@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://qvfrpgb15r2x" path="res://game/scenes/shooting/weapons/gun.tscn" id="4_d8do8"]
 [ext_resource type="PackedScene" uid="uid://djkstre63q2jj" path="res://game/modifier_handler/modifier_handler.tscn" id="5_pk8i0"]
 [ext_resource type="PackedScene" uid="uid://bsj0x6omnlkpw" path="res://game/modifier_handler/modifier.tscn" id="6_q4mg4"]
+[ext_resource type="Texture2D" uid="uid://c2xdvha6suij8" path="res://icon.svg" id="7_q4mg4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4wif6"]
 bg_color = Color(0.9999997, 0.16517359, 0.1934779, 1)
@@ -68,14 +69,6 @@ offset_right = 1096.0
 offset_bottom = 571.0
 show_percentage = false
 
-[node name="DPS Label" type="Label" parent="HUD Elements" unique_id=1033671891]
-layout_mode = 0
-offset_left = 14.0
-offset_top = 567.0
-offset_right = 389.0
-offset_bottom = 646.0
-text = "You have done 0 damage."
-
 [node name="Health Bar" type="ProgressBar" parent="HUD Elements" unique_id=273950473]
 layout_mode = 0
 offset_left = 344.0
@@ -131,6 +124,7 @@ offset_right = 1150.0
 offset_bottom = 651.0
 
 [node name="FireRate Bar" type="ProgressBar" parent="HUD Elements" unique_id=2141962289]
+visible = false
 layout_mode = 0
 offset_left = 290.0
 offset_top = 624.0
@@ -177,5 +171,22 @@ one_shot = true
 [node name="ModifierHandler" parent="." unique_id=813565283 instance=ExtResource("5_pk8i0")]
 
 [node name="DamageModifier" parent="ModifierHandler" unique_id=1559025709 instance=ExtResource("6_q4mg4")]
+
+[node name="Gunshot Particles" type="CPUParticles2D" parent="." unique_id=521332747]
+scale = Vector2(0.425, 0.425)
+emitting = false
+amount = 50
+texture = ExtResource("7_q4mg4")
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+emission_shape = 6
+emission_ring_inner_radius = 25.0
+emission_ring_radius = 50.0
+gravity = Vector2(0, 0)
+radial_accel_min = 75.0
+radial_accel_max = 75.0
+scale_amount_min = 0.25
+scale_amount_max = 0.25
 
 [connection signal="area_entered" from="Boundaries/Boundary Areas" to="Target Fish" method="_on_boundary_areas_area_entered"]

@@ -15,7 +15,7 @@ height = 176.0
 [node name="Fish" type="CharacterBody2D" unique_id=1605965542 node_paths=PackedStringArray("agent")]
 scale = Vector2(0.375, 0.125)
 script = ExtResource("2_c75su")
-agent = NodePath("NavigationAgent2D")
+agent = NodePath("")
 
 [node name="Fish Radius" type="Area2D" parent="." unique_id=318609521]
 collision_layer = 3
@@ -24,10 +24,15 @@ script = ExtResource("3_c75su")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Fish Radius" unique_id=728189849]
 shape = SubResource("CapsuleShape2D_c75su")
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=416885932]
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1457391121]
 shape = SubResource("CapsuleShape2D_i8kew")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2103011584]
 texture = ExtResource("1_nf6vl")
+
+[node name="TargetPosition" type="Marker2D" parent="." unique_id=1801665432]
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=2099350415]
+target_position = Vector2(0, 0)
+collision_mask = 8
+collide_with_areas = true
