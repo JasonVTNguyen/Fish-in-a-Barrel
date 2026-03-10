@@ -27,20 +27,39 @@ text = "Blacksmith"
 
 [node name="Buy Bait Button" type="Button" parent="." unique_id=1320310376]
 layout_mode = 0
-offset_left = 990.0
-offset_top = 34.0
-offset_right = 1110.0
-offset_bottom = 119.0
-text = "Bait"
+offset_left = 960.0
+offset_top = 88.0
+offset_right = 1088.0
+offset_bottom = 173.0
+text = "Buy Bait"
 
 [node name="Money" type="Label" parent="." unique_id=46260244]
 layout_mode = 0
-offset_left = 349.0
-offset_top = 610.0
-offset_right = 758.0
-offset_bottom = 633.0
+offset_left = 960.0
+offset_top = 16.0
+offset_right = 1136.0
+offset_bottom = 64.0
 text = "Money"
+
+[node name="Description" type="Label" parent="." unique_id=524140565]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 488.0
+offset_right = 800.0
+offset_bottom = 608.0
+
+[node name="Buy Item Button 1" type="Button" parent="." unique_id=1834953524]
+layout_mode = 0
+offset_left = 744.0
+offset_top = 88.0
+offset_right = 888.0
+offset_bottom = 176.0
 
 [connection signal="pressed" from="Start Next Round Button" to="." method="_on_start_next_round_button_pressed"]
 [connection signal="pressed" from="Blacksmith Button" to="." method="_on_blacksmith_button_pressed"]
+[connection signal="mouse_entered" from="Buy Bait Button" to="." method="_on_buy_bait_button_mouse_entered"]
+[connection signal="mouse_exited" from="Buy Bait Button" to="." method="_on_buy_bait_button_mouse_exited"]
 [connection signal="pressed" from="Buy Bait Button" to="." method="_on_buy_bait_button_pressed"]
+[connection signal="mouse_entered" from="Buy Item Button 1" to="." method="_on_buy_item_button_1_mouse_entered"]
+[connection signal="mouse_exited" from="Buy Item Button 1" to="." method="_on_buy_item_button_1_mouse_exited"]
+[connection signal="pressed" from="Buy Item Button 1" to="." method="_on_buy_item_button_1_pressed"]

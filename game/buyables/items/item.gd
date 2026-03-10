@@ -26,3 +26,6 @@ func _init(c_item_name : String, c_item_type : String, c_item_desc : String, c_p
 	avg_price = c_price
 	flat_value = c_flat
 	percent_value = c_percent
+
+func _to_string() -> String:
+	return "Item Name: " + item_name + ", Description: " + item_desc

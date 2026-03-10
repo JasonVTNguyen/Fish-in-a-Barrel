@@ -2,7 +2,7 @@ extends Node
 
 @onready var screen_size = get_viewport().get_visible_rect().size
 
-var inventory : Inventory
+var inventory : Inventory = Inventory.new()
 var currentFish : Fish
 var total_value : float = 0.0
 var money : float = 0.0

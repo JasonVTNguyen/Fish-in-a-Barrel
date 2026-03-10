@@ -2,6 +2,20 @@
 
 [ext_resource type="Script" uid="uid://dr5ykvpx7yvvd" path="res://game/scenes/shopping/inventory.gd" id="1_jfhyk"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jfhyk"]
+bg_color = Color(0.38039216, 0.6862745, 0.3019608, 0.49411765)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3qhed"]
+bg_color = Color(0.17254902, 0.6627451, 0.7921569, 0.50980395)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
 [node name="Inventory" type="Control" unique_id=441917759]
 layout_mode = 3
 anchors_preset = 15
@@ -11,4 +25,57 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jfhyk")
 
-[node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=1081126462]
+[node name="Panel" type="Panel" parent="." unique_id=1813150940]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 456.0
+offset_right = 912.0
+offset_bottom = 648.0
+
+[node name="Items" type="Label" parent="Panel" unique_id=136952215]
+layout_mode = 0
+offset_top = 84.0
+offset_right = 464.0
+offset_bottom = 107.0
+text = "Item"
+
+[node name="Primary Weapon Box" type="PanelContainer" parent="Panel" unique_id=1548207852]
+layout_mode = 0
+offset_left = 464.0
+offset_right = 672.0
+offset_bottom = 96.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_jfhyk")
+
+[node name="Primary Gun" type="Label" parent="Panel/Primary Weapon Box" unique_id=974591002]
+layout_mode = 2
+text = "Primary Gun"
+
+[node name="Secondary Weapon Box" type="PanelContainer" parent="Panel" unique_id=915958512]
+layout_mode = 0
+offset_left = 464.0
+offset_top = 96.0
+offset_right = 672.0
+offset_bottom = 192.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_3qhed")
+
+[node name="Secondary Gun" type="Label" parent="Panel/Secondary Weapon Box" unique_id=103242671]
+layout_mode = 2
+
+[node name="Close Inventory Button" type="Button" parent="." unique_id=2104197141]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 416.0
+offset_right = 640.0
+offset_bottom = 448.0
+text = "Close"
+
+[node name="Gun Description" type="Label" parent="." unique_id=462549250]
+layout_mode = 0
+offset_left = 704.0
+offset_top = 400.0
+offset_right = 912.0
+offset_bottom = 456.0
+
+[connection signal="mouse_entered" from="Panel/Primary Weapon Box" to="." method="_on_primary_weapon_box_mouse_entered"]
+[connection signal="mouse_exited" from="Panel/Primary Weapon Box" to="." method="_on_primary_weapon_box_mouse_exited"]
+[connection signal="pressed" from="Close Inventory Button" to="." method="_on_close_inventory_button_pressed"]

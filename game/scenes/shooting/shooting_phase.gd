@@ -34,7 +34,7 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	update_labels()
 	
-	#current_gun.append_to_gun_upgrades(Catalogue.weapon_upgrades.get(0))
+	GameController.primary_gun.append_to_gun_upgrades(Catalogue.weapon_upgrades.get(0))
 	
 	print(current_gun)
 	$"HUD Elements/Reload Bar".max_value = current_gun.reload_time
@@ -87,7 +87,7 @@ func target_dead():
 			GameController.money += GameController.total_value
 			GameController.total_value = 0.0
 			GameController.current_round += 1
-			get_tree().change_scene_to_file("res://game/scenes/shopping/shop.tscn")
+			get_tree().change_scene_to_file("res://game/scenes/shopping/shopping_menu.tscn")
 		else:
 			print("Game Over")
 			get_tree().change_scene_to_file("res://game/scenes/mainmenu/main_menu.tscn")
@@ -96,6 +96,9 @@ func damage_calculation():
 	#print("Damage Dealt")
 	#print(current_gun.gun_upgrades)
 	var damage : int = current_gun.damage
+	for item : Item in GameController.inventory.items:
+		if item.item_type == Item.Item_Type.SHOOTING:
+			damage += item.flat_value
 	for upgrade in current_gun.gun_upgrades: # Flat Value Handler
 		if upgrade is Bullet_Upgrade:
 			damage += upgrade.flat_dmg

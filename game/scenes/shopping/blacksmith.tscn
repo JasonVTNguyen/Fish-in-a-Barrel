@@ -25,14 +25,6 @@ offset_right = 1134.0
 offset_bottom = 632.0
 text = "Buy Ammo"
 
-[node name="Money" type="Label" parent="." unique_id=523980686]
-layout_mode = 0
-offset_left = 351.0
-offset_top = 603.0
-offset_right = 760.0
-offset_bottom = 626.0
-text = "Money"
-
 [node name="Buy Weapon Button" type="Button" parent="." unique_id=2058136637]
 layout_mode = 0
 offset_left = 16.0
@@ -41,12 +33,20 @@ offset_right = 320.0
 offset_bottom = 573.0
 text = "Buy Weapon"
 
+[node name="Money" type="Label" parent="." unique_id=523980686]
+layout_mode = 0
+offset_left = 1064.0
+offset_top = 8.0
+offset_right = 1144.0
+offset_bottom = 48.0
+text = "Money"
+
 [node name="Description Text" type="Label" parent="." unique_id=933545156]
 layout_mode = 0
-offset_left = 323.0
-offset_top = 11.0
-offset_right = 1015.0
-offset_bottom = 185.0
+offset_left = 328.0
+offset_top = 16.0
+offset_right = 728.0
+offset_bottom = 184.0
 text = "Description"
 
 [connection signal="pressed" from="To Shop Button" to="." method="_on_to_shop_button_pressed"]

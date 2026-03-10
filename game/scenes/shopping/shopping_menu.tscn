@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://83iqaojexvhg" path="res://game/scenes/shopping/shopping_menu.gd" id="1_bl3e4"]
 [ext_resource type="PackedScene" uid="uid://yqph571u6cpw" path="res://game/scenes/shopping/blacksmith.tscn" id="2_b6u2u"]
 [ext_resource type="PackedScene" uid="uid://can0iqaqrn3fs" path="res://game/scenes/shopping/shop.tscn" id="3_ydbwc"]
+[ext_resource type="PackedScene" uid="uid://cnctdm4qoh7yt" path="res://game/scenes/gui/inventory.tscn" id="4_xejfy"]
 
 [node name="Shopping Menu" type="Control" unique_id=68397610]
 layout_mode = 3
@@ -18,3 +19,19 @@ layout_mode = 0
 
 [node name="Shop" parent="." unique_id=1294004998 instance=ExtResource("3_ydbwc")]
 layout_mode = 0
+
+[node name="Inventory Button" type="Button" parent="." unique_id=2018876874]
+layout_mode = 0
+offset_left = 520.0
+offset_top = 608.0
+offset_right = 632.0
+offset_bottom = 639.0
+text = "Inventory"
+
+[node name="Inventory" parent="." unique_id=441917759 instance=ExtResource("4_xejfy")]
+layout_mode = 1
+
+[connection signal="switch_scene" from="Blacksmith" to="." method="_on_blacksmith_switch_scene"]
+[connection signal="switch_scene" from="Shop" to="." method="_on_shop_switch_scene"]
+[connection signal="pressed" from="Inventory Button" to="." method="_on_inventory_button_pressed"]
+[connection signal="close_inventory" from="Inventory" to="." method="_on_inventory_close_inventory"]

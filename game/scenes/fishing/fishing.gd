@@ -54,4 +54,4 @@ func _on_lake_boundaries_mouse_entered() -> void:
 
 
 func _on_skip_to_shop_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://game/scenes/shopping/shop.tscn")
+	get_tree().change_scene_to_file("res://game/scenes/shopping/shopping_menu.tscn")

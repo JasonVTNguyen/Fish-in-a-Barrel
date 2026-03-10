@@ -45,7 +45,7 @@ func _on_boundary_areas_area_entered(area: Area2D) -> void:
 			GameController.money += GameController.total_value
 			GameController.total_value = 0.0
 			GameController.current_round += 1
-			get_tree().change_scene_to_file("res://game/scenes/shopping/shop.tscn")
+			get_tree().change_scene_to_file("res://game/scenes/shopping/shopping_menu.tscn")
 		else:
 			print("Game Over")
 			get_tree().change_scene_to_file("res://game/scenes/mainmenu/main_menu.tscn")
