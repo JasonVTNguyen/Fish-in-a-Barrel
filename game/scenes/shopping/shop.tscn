@@ -11,7 +11,7 @@ script = ExtResource("1_gcpnk")
 
 [node name="Start Next Round Button" type="Button" parent="." unique_id=1567259795]
 layout_mode = 0
-offset_left = 848.0
+offset_left = 956.0
 offset_top = 600.0
 offset_right = 1144.0
 offset_bottom = 640.0

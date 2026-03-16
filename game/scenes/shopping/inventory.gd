@@ -1,5 +1,4 @@
 extends Node
-
 class_name Inventory
 
 signal close_inventory
@@ -27,8 +26,11 @@ func _on_close_inventory_button_pressed() -> void:
 	close_inventory.emit()
 
 func update_labels() -> void:
-	$Panel/Items.text = str(GameController.inventory.items)
-	$"Panel/Primary Weapon Box/Primary Gun".text = str(GameController.primary_gun)
+	if len(GameController.inventory.items) > 0:
+		$Panel/Items.text = str(GameController.inventory.items)
+	else:
+		$Panel/Items.text = ""
+	$"Panel/Primary Weapon Box/Primary Gun".text = str(GameController.primary_gun.gun_name)
 
 
 func _on_primary_weapon_box_mouse_entered() -> void:

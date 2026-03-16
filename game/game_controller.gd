@@ -16,6 +16,8 @@ var primary_gun_upgrades : Array[Upgrade] = []
 var secondary_gun : Gun  #= Gun.new("Shotgun", 55, 5000, 20, 10)
 var secondary_gun_upgrades : Array[Upgrade] = []
 
+var fishing_qte_score : float
+
 var story_round_objectives : Dictionary[int,float] = {
 	0 : 10.0,
 	1 : 50.0,

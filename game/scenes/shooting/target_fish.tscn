@@ -6,8 +6,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pebvm"]
 size = Vector2(129, 130)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mutoy"]
-size = Vector2(118, 122)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mutoy"]
+radius = 71.0
+height = 142.0
 
 [node name="Target Fish" type="RigidBody2D" unique_id=1369185684]
 script = ExtResource("1_sglp5")
@@ -22,4 +23,5 @@ shape = SubResource("RectangleShape2D_pebvm")
 [node name="Area2D" type="Area2D" parent="." unique_id=1430345482]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1775190047]
-shape = SubResource("RectangleShape2D_mutoy")
+position = Vector2(0, 3)
+shape = SubResource("CapsuleShape2D_mutoy")
