@@ -9,14 +9,17 @@ var money : float = 0.0
 var total_bait : int = 3
 var current_round : int = 0
 
+var fishing_qte_score : float
+
 var current_bait : int = 3
-var primary_gun : Gun = Gun.new("Pistol", 5, 5000, 20, 10)
+var primary_gun : Gun
 var primary_gun_upgrades : Array[Upgrade] = []
 
 var secondary_gun : Gun  #= Gun.new("Shotgun", 55, 5000, 20, 10)
 var secondary_gun_upgrades : Array[Upgrade] = []
 
-var fishing_qte_score : float
+var current_hook : Hook
+
 
 var story_round_objectives : Dictionary[int,float] = {
 	0 : 10.0,
@@ -35,16 +38,10 @@ enum GunState {HIT, MISS}
 
 var gun_state : GunState = GunState.MISS
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	print("Game Loaded.")
 	#print(get_viewport().get_visible_rect().size[0])
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-	
 func reset_game():
 	inventory = Inventory.new()
 	currentFish = Fish.new()
@@ -53,3 +50,8 @@ func reset_game():
 	total_bait = 3
 	current_bait = 3
 	current_round = 0
+	primary_gun = Catalogue.weapons.get(0)
+	primary_gun_upgrades = []
+	secondary_gun = null
+	secondary_gun_upgrades = []
+	current_hook = Catalogue.hooks.get(0)

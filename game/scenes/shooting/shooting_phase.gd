@@ -32,9 +32,12 @@ func _ready() -> void:
 	health_bar.value = new_target.target_max_health
 	current_gun = GameController.primary_gun
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	
+	apply_hook_damage()
+	
 	update_labels()
 	
-	GameController.primary_gun.append_to_gun_upgrades(Catalogue.weapon_upgrades.get(0))
+	#GameController.primary_gun.append_to_gun_upgrades(Catalogue.weapon_upgrades.get(0))
 	
 	print(current_gun)
 	$"HUD Elements/Reload Bar".max_value = current_gun.reload_time
@@ -75,17 +78,16 @@ func _input(event: InputEvent) -> void:
 	update_labels()
 
 func target_dead():
-	GameController.total_value += GameController.currentFish.value
+	GameController.money += GameController.currentFish.value
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	if GameController.current_bait > 0:
 		get_tree().change_scene_to_file("res://game/scenes/fishing/fishing.tscn")
 	else:
 		print("Total Value: " + str(GameController.total_value))
 		print("Round Goal: " + str(GameController.story_round_objectives.get(GameController.current_round)))
-		if GameController.total_value >= GameController.story_round_objectives.get(GameController.current_round):
+		if GameController.money >= GameController.story_round_objectives.get(GameController.current_round):
 			print("Value Exceeded.")
-			GameController.money += GameController.total_value
-			GameController.total_value = 0.0
+			GameController.money -= GameController.story_round_objectives.get(GameController.current_round)
 			GameController.current_round += 1
 			get_tree().change_scene_to_file("res://game/scenes/shopping/shopping_menu.tscn")
 		else:
@@ -98,10 +100,17 @@ func damage_calculation():
 	var damage : int = current_gun.damage
 	for item : Item in GameController.inventory.items:
 		if item.item_type == Item.Item_Type.SHOOTING:
-			damage += item.flat_value
+			damage += item.apply_conditional_flat()
 	for upgrade in current_gun.gun_upgrades: # Flat Value Handler
 		if upgrade is Bullet_Upgrade:
 			damage += upgrade.flat_dmg
+	
+	for item : Item in GameController.inventory.items:
+		if item.item_type == Item.Item_Type.SHOOTING:
+			damage *= item.apply_conditional_percent()
+	for upgrade in current_gun.gun_upgrades: # Flat Value Handler
+		if upgrade is Bullet_Upgrade:
+			damage *= upgrade.percent_dmg
 	
 	return floor(damage)
 
@@ -131,3 +140,8 @@ func update_labels() -> void:
 		$"HUD Elements/Ammo".text = "All Out of Ammo!"
 	else:
 		$"HUD Elements/Ammo".text = "Ammo: " + str(current_gun.cur_ammo) + " / " + str(current_gun.mag_size) + " / " + str(current_gun.max_ammo)
+
+func apply_hook_damage() -> void:
+	var hook_damage = GameController.current_hook.hook_damage
+	new_target.damage_target(hook_damage)
+	health_bar.value -= hook_damage

@@ -11,7 +11,7 @@ var bobber_state = BobberState.NOT_SET
 func _ready() -> void:
 	print("Fishing Scene Ready")
 	$"Bait Count".text = str(GameController.current_bait)
-	$"Total Value".text = str(GameController.total_value)
+	$"Total Value".text = str(GameController.money)
 	$"Required Weight Total".text = str(GameController.story_round_objectives.get(GameController.current_round))
 	for i in range(5):
 		spawn_fish()

@@ -37,6 +37,7 @@ func _on_buy_bait_button_pressed() -> void:
 
 func update_values() -> void:
 	$Money.text = "Cash: " + str(GameController.money)
+	$"Start Next Round Button".text = "Next Installment\n$" + str(GameController.story_round_objectives.get(GameController.current_round))
 
 func _on_blacksmith_button_pressed() -> void:
 	switch_scene.emit()

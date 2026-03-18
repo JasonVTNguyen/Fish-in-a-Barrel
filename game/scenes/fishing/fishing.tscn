@@ -5,6 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://bsigi13tsl8o6" path="res://game/bg/lakebg.png" id="5_n7eig"]
 [ext_resource type="Script" uid="uid://7k0ss52vhvmq" path="res://game/scenes/fishing/fish_dictionary.gd" id="7_j3aex"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f6nhs"]
+size = Vector2(1211.5, 222)
+
 [sub_resource type="LabelSettings" id="LabelSettings_i263x"]
 font_size = 64
 font_color = Color(0, 0, 0, 1)
@@ -15,9 +18,6 @@ font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_f6nhs"]
 font_color = Color(0, 0, 0, 1)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f6nhs"]
-size = Vector2(1211.5, 222)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_n7eig"]
 vertices = PackedVector2Array(958, 269.35156, 1024.2969, 313.54688, 1010.97656, 326.8672, 869.53906, 358.29688, 987.8594, 154, 1009.8594, 176, 958, 227.85938, 814.1875, 154, 268.27344, 294.71094, 128.20313, 263.57813, 123.359375, 244.24219, 196.82031, 192.82031, 293.3125, 152.61719, 758.9219, 389.89844, 318.95313, 358.46875, 304.2422, 321.6797, 348.5078, 105.28906, 504.14063, 74.171875, 685.3594, 105.67969)
@@ -32,6 +32,26 @@ position = Vector2(576, 324)
 scale = Vector2(0.72, 0.53999996)
 texture = ExtResource("5_n7eig")
 metadata/_edit_lock_ = true
+
+[node name="Lake Boundaries" type="StaticBody2D" parent="." unique_id=1016460496]
+collision_layer = 8
+collision_mask = 9
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Lake Boundaries" unique_id=2131008287]
+polygon = PackedVector2Array(287, 390, 264, 344, 216, 320, 104, 296, 56, 256, 56, 454, 1082, 509, 1056, 344, 1016, 360, 893, 389, 768, 424)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Lake Boundaries" unique_id=106183690]
+polygon = PackedVector2Array(1007, 242, 1016, 224, 1048, 184, 1064, 160, 1040, 136, 1000, 120, 840, 120, 616, -6, 1167, -19, 1177, 481, 1066, 490, 1055, 346, 1064, 336, 1072, 312)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Lake Boundaries" unique_id=514315953]
+polygon = PackedVector2Array(84, 441, 64, 256, 125, 186, 270, 123, 328, 61, 340, 1, -17, -19, -16, 441)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Lake Boundaries" unique_id=937295642]
+polygon = PackedVector2Array(314, 68, 400, 40, 522, 39, 608, 48, 744, 88, 840, 120, 884, 44, 544, -21, 255, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lake Boundaries" unique_id=982726887]
+position = Vector2(577.25, 543)
+shape = SubResource("RectangleShape2D_f6nhs")
 
 [node name="Bait Count" type="Label" parent="." unique_id=1535396836]
 offset_left = 8.0
@@ -56,26 +76,6 @@ offset_right = 1112.0
 offset_bottom = 40.0
 text = "Required"
 label_settings = SubResource("LabelSettings_f6nhs")
-
-[node name="Lake Boundaries" type="StaticBody2D" parent="." unique_id=1016460496]
-collision_layer = 8
-collision_mask = 9
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Lake Boundaries" unique_id=2131008287]
-polygon = PackedVector2Array(287, 390, 264, 344, 216, 320, 104, 296, 56, 256, 56, 454, 1082, 509, 1056, 344, 1016, 360, 893, 389, 768, 424)
-
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Lake Boundaries" unique_id=106183690]
-polygon = PackedVector2Array(1007, 242, 1016, 224, 1048, 184, 1064, 160, 1040, 136, 1000, 120, 840, 120, 616, -6, 1167, -19, 1177, 481, 1066, 490, 1055, 346, 1064, 336, 1072, 312)
-
-[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Lake Boundaries" unique_id=514315953]
-polygon = PackedVector2Array(84, 441, 64, 256, 125, 186, 270, 123, 328, 61, 340, 1, -17, -19, -16, 441)
-
-[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Lake Boundaries" unique_id=937295642]
-polygon = PackedVector2Array(314, 68, 400, 40, 522, 39, 608, 48, 744, 88, 840, 120, 884, 44, 544, -21, 255, 0)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Lake Boundaries" unique_id=982726887]
-position = Vector2(577.25, 543)
-shape = SubResource("RectangleShape2D_f6nhs")
 
 [node name="Bobber" parent="." unique_id=1580847433 instance=ExtResource("4_n7eig")]
 position = Vector2(-207.99998, 136.00002)

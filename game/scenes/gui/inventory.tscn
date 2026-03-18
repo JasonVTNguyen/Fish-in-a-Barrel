@@ -16,6 +16,11 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
+[sub_resource type="LabelSettings" id="LabelSettings_jfhyk"]
+font_size = 20
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
 [node name="Inventory" type="Control" unique_id=441917759]
 layout_mode = 3
 anchors_preset = 15
@@ -75,6 +80,7 @@ offset_left = 704.0
 offset_top = 400.0
 offset_right = 912.0
 offset_bottom = 456.0
+label_settings = SubResource("LabelSettings_jfhyk")
 
 [connection signal="mouse_entered" from="Panel/Primary Weapon Box" to="." method="_on_primary_weapon_box_mouse_entered"]
 [connection signal="mouse_exited" from="Panel/Primary Weapon Box" to="." method="_on_primary_weapon_box_mouse_exited"]

@@ -1,6 +1,17 @@
 [gd_scene format=3 uid="uid://can0iqaqrn3fs"]
 
 [ext_resource type="Script" uid="uid://cdae1n3fk48r5" path="res://game/scenes/shopping/shop.gd" id="1_gcpnk"]
+[ext_resource type="Texture2D" uid="uid://dguiojrw265vy" path="res://game/bg/ShoppingShopScene.png" id="2_bgeqa"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gcpnk"]
+font_size = 30
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_bgeqa"]
+font_size = 20
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Shop" type="Control" unique_id=1294004998]
 layout_mode = 3
@@ -9,10 +20,15 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_gcpnk")
 
+[node name="ShoppingShopScene" type="Sprite2D" parent="." unique_id=1298796619]
+position = Vector2(576, 324)
+scale = Vector2(0.72999996, 0.55333334)
+texture = ExtResource("2_bgeqa")
+
 [node name="Start Next Round Button" type="Button" parent="." unique_id=1567259795]
 layout_mode = 0
-offset_left = 956.0
-offset_top = 600.0
+offset_left = 920.0
+offset_top = 576.0
 offset_right = 1144.0
 offset_bottom = 640.0
 text = "Back to Fishing"
@@ -27,33 +43,36 @@ text = "Blacksmith"
 
 [node name="Buy Bait Button" type="Button" parent="." unique_id=1320310376]
 layout_mode = 0
-offset_left = 960.0
-offset_top = 88.0
-offset_right = 1088.0
-offset_bottom = 173.0
+offset_left = 784.0
+offset_top = 32.0
+offset_right = 912.0
+offset_bottom = 117.0
 text = "Buy Bait"
 
 [node name="Money" type="Label" parent="." unique_id=46260244]
 layout_mode = 0
-offset_left = 960.0
-offset_top = 16.0
-offset_right = 1136.0
+offset_left = 896.0
+offset_top = 8.0
+offset_right = 1144.0
 offset_bottom = 64.0
 text = "Money"
+label_settings = SubResource("LabelSettings_gcpnk")
 
 [node name="Description" type="Label" parent="." unique_id=524140565]
 layout_mode = 0
-offset_left = 224.0
-offset_top = 488.0
-offset_right = 800.0
-offset_bottom = 608.0
+offset_left = 304.0
+offset_top = 384.0
+offset_right = 880.0
+offset_bottom = 504.0
+label_settings = SubResource("LabelSettings_bgeqa")
 
 [node name="Buy Item Button 1" type="Button" parent="." unique_id=1834953524]
 layout_mode = 0
-offset_left = 744.0
-offset_top = 88.0
-offset_right = 888.0
-offset_bottom = 176.0
+offset_left = 40.0
+offset_top = 32.0
+offset_right = 184.0
+offset_bottom = 120.0
+text = "Item 1"
 
 [connection signal="pressed" from="Start Next Round Button" to="." method="_on_start_next_round_button_pressed"]
 [connection signal="pressed" from="Blacksmith Button" to="." method="_on_blacksmith_button_pressed"]
