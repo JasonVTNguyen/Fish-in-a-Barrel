@@ -31,10 +31,18 @@ func update_labels() -> void:
 	else:
 		$Panel/Items.text = ""
 	$"Panel/Primary Weapon Box/Primary Gun".text = str(GameController.primary_gun.gun_name)
-
-
+	if GameController.secondary_gun:
+		$"Panel/Secondary Weapon Box/Secondary Gun".text = str(GameController.secondary_gun.gun_name)
+	
 func _on_primary_weapon_box_mouse_entered() -> void:
 	$"Gun Description".text = str(GameController.primary_gun.gun_upgrades)
 
 func _on_primary_weapon_box_mouse_exited() -> void:
+	$"Gun Description".text = ""
+
+func _on_secondary_weapon_box_mouse_entered() -> void:
+	if GameController.secondary_gun:
+		$"Gun Description".text = str(GameController.secondary_gun.gun_upgrades)
+
+func _on_secondary_weapon_box_mouse_exited() -> void:
 	$"Gun Description".text = ""

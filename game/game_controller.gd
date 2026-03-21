@@ -15,7 +15,7 @@ var current_bait : int = 3
 var primary_gun : Gun
 var primary_gun_upgrades : Array[Upgrade] = []
 
-var secondary_gun : Gun  #= Gun.new("Shotgun", 55, 5000, 20, 10)
+var secondary_gun : Gun
 var secondary_gun_upgrades : Array[Upgrade] = []
 
 var current_hook : Hook

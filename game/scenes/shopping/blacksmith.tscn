@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bkg128qxjnkw6" path="res://game/scenes/shopping/blacksmith.gd" id="1_eekjm"]
 [ext_resource type="Texture2D" uid="uid://frc5j0fey8n8" path="res://game/bg/ShoppingBlacksmithScene.png" id="2_76fyy"]
+[ext_resource type="PackedScene" uid="uid://deiqhg82uiynn" path="res://game/scenes/shopping/replace_weapon_panel.tscn" id="3_2h1f7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2h1f7"]
 font_size = 32
@@ -65,6 +66,9 @@ offset_right = 728.0
 offset_bottom = 184.0
 text = "Description"
 label_settings = SubResource("LabelSettings_76fyy")
+
+[node name="Replace Weapon Panel" parent="." unique_id=965525752 instance=ExtResource("3_2h1f7")]
+layout_mode = 0
 
 [connection signal="pressed" from="To Shop Button" to="." method="_on_to_shop_button_pressed"]
 [connection signal="pressed" from="Buy Ammo Button" to="." method="_on_buy_ammo_button_pressed"]

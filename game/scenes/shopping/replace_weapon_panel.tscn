@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://deiqhg82uiynn"]
+
+[ext_resource type="Script" uid="uid://da7vkgkpw07yh" path="res://game/scenes/shopping/replace_weapon_panel.gd" id="1_nrqmn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4wbwc"]
+
+[node name="Replace Weapon Panel" type="Control" unique_id=965525752]
+layout_mode = 3
+anchors_preset = 0
+offset_top = -7.0
+offset_right = 1143.0
+offset_bottom = 651.0
+script = ExtResource("1_nrqmn")
+
+[node name="Panel" type="Panel" parent="." unique_id=320825241]
+layout_mode = 0
+offset_left = 334.0
+offset_top = 319.0
+offset_right = 823.0
+offset_bottom = 473.0
+
+[node name="Label" type="Label" parent="Panel" unique_id=1795132053]
+layout_mode = 0
+offset_right = 491.0
+offset_bottom = 46.0
+text = "Which weapon would you like to replace?"
+label_settings = SubResource("LabelSettings_4wbwc")
+horizontal_alignment = 1
+
+[node name="Rep Primary Button" type="Button" parent="Panel" unique_id=1380130690]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 63.0
+offset_right = 195.0
+offset_bottom = 121.0
+text = "Primary"
+
+[node name="Rep Secondary Button" type="Button" parent="Panel" unique_id=1290291064]
+layout_mode = 0
+offset_left = 273.0
+offset_top = 62.0
+offset_right = 452.0
+offset_bottom = 122.0
+text = "Secondary"
+
+[connection signal="mouse_entered" from="Panel/Rep Primary Button" to="." method="_on_rep_primary_button_mouse_entered"]
+[connection signal="mouse_exited" from="Panel/Rep Primary Button" to="." method="_on_rep_primary_button_mouse_exited"]
+[connection signal="pressed" from="Panel/Rep Primary Button" to="." method="_on_rep_primary_button_pressed"]
+[connection signal="mouse_entered" from="Panel/Rep Secondary Button" to="." method="_on_rep_secondary_button_mouse_entered"]
+[connection signal="mouse_exited" from="Panel/Rep Secondary Button" to="." method="_on_rep_secondary_button_mouse_exited"]
+[connection signal="pressed" from="Panel/Rep Secondary Button" to="." method="_on_rep_secondary_button_pressed"]

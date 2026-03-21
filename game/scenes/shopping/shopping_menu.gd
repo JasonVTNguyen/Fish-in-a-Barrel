@@ -2,6 +2,10 @@ extends Control
 
 var for_sale_weapon : Gun
 var for_sale_item1 : Item
+var for_sale_item2 : Item
+var for_sale_item3 : Item
+var for_sale_item4 : Item
+
 
 @onready var blacksmith: Control = $Blacksmith
 @onready var shop: Control = $Shop
@@ -13,6 +17,10 @@ func _ready() -> void:
 	inventory.hide()
 	for_sale_weapon = Catalogue.weapons.get(randi_range(0,len(Catalogue.weapons)-1))
 	for_sale_item1 = Catalogue.items.get(randi_range(0,len(Catalogue.items)-1))
+	for_sale_item2 = Catalogue.items.get(randi_range(0,len(Catalogue.items)-1))
+	for_sale_item3 = Catalogue.items.get(randi_range(0,len(Catalogue.items)-1))
+	for_sale_item4 = Catalogue.items.get(randi_range(0,len(Catalogue.items)-1))
+	
 	print(for_sale_item1)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.

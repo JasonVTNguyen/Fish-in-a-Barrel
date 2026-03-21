@@ -37,7 +37,22 @@ func makeFish(fish):
 		#print("Making Fish")
 		GameController.current_bait -= 1
 		GameController.currentFish = Fish.new(fish.fish_name, fish.value, fish.health, fish.img, fish.lore)
-		get_tree().change_scene_to_file("res://game/scenes/shooting/shooting_phase.tscn")
+		if GameController.currentFish.health > GameController.current_hook.hook_damage or true:
+			get_tree().change_scene_to_file("res://game/scenes/shooting/shooting_phase.tscn")
+		#else:
+			#GameController.money += GameController.currentFish.value
+			#bobber_state = BobberState.NOT_SET
+			#if GameController.current_bait <= 0:
+				#print("Total Value: " + str(GameController.total_value))
+				#print("Round Goal: " + str(GameController.story_round_objectives.get(GameController.current_round)))
+				#if GameController.money >= GameController.story_round_objectives.get(GameController.current_round):
+					#print("Value Exceeded.")
+					#GameController.money -= GameController.story_round_objectives.get(GameController.current_round)
+					#GameController.current_round += 1
+					#get_tree().change_scene_to_file("res://game/scenes/shopping/shopping_menu.tscn")
+				#else:
+					#print("Game Over")
+					#get_tree().change_scene_to_file("res://game/scenes/mainmenu/main_menu.tscn")
 
 func set_bobber(bobber_pos) -> void:
 	bobber_location = bobber_pos
