@@ -32,9 +32,7 @@ func _ready() -> void:
 	health_bar.value = new_target.target_max_health
 	current_gun = GameController.primary_gun
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	
 	apply_hook_damage()
-	
 	update_labels()
 	
 	#GameController.primary_gun.append_to_gun_upgrades(Catalogue.weapon_upgrades.get(0))
@@ -142,6 +140,7 @@ func update_labels() -> void:
 		$"HUD Elements/Ammo".text = "Ammo: " + str(current_gun.cur_ammo) + " / " + str(current_gun.mag_size) + " / " + str(current_gun.max_ammo)
 
 func apply_hook_damage() -> void:
-	var hook_damage = GameController.current_hook.hook_damage
+	var hook_damage = GameController.current_hook.hook_damage 
+	hook_damage *= 1 + GameController.fishing_qte_score / 10
 	new_target.damage_target(hook_damage)
 	health_bar.value -= hook_damage

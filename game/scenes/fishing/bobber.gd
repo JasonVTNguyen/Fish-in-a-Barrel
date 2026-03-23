@@ -22,9 +22,10 @@ func _process(delta: float) -> void:
 		position = get_viewport().get_mouse_position()
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("Select"):
-		is_placed = true
-		fishing_scene.set_bobber(self.position)
+	if GameController.mouse_state == GameController.MouseState.IN:
+		if event.is_action_pressed("Select"):
+			is_placed = true
+			fishing_scene.set_bobber(self.position)
 	if event.is_action_pressed("Cancel"):
 		if is_placed:
 			fishing_scene.unset_bobber()

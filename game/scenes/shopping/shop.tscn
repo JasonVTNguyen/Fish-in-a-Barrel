@@ -24,6 +24,7 @@ script = ExtResource("1_gcpnk")
 position = Vector2(576, 324)
 scale = Vector2(0.72999996, 0.55333334)
 texture = ExtResource("2_bgeqa")
+metadata/_edit_lock_ = true
 
 [node name="Start Next Round Button" type="Button" parent="." unique_id=1567259795]
 layout_mode = 0
@@ -57,13 +58,14 @@ offset_right = 1144.0
 offset_bottom = 64.0
 text = "Money"
 label_settings = SubResource("LabelSettings_gcpnk")
+horizontal_alignment = 2
 
 [node name="Description" type="Label" parent="." unique_id=524140565]
 layout_mode = 0
 offset_left = 304.0
-offset_top = 384.0
+offset_top = 360.0
 offset_right = 880.0
-offset_bottom = 504.0
+offset_bottom = 528.0
 label_settings = SubResource("LabelSettings_bgeqa")
 
 [node name="Buy Item Button 1" type="Button" parent="." unique_id=1834953524]
@@ -76,11 +78,35 @@ text = "Item 1"
 
 [node name="Buy Item Button 2" type="Button" parent="." unique_id=520895541]
 layout_mode = 0
-offset_left = 232.0
-offset_top = 40.0
-offset_right = 359.0
-offset_bottom = 116.0
+offset_left = 224.0
+offset_top = 32.0
+offset_right = 368.0
+offset_bottom = 124.0
 text = "Item 2"
+
+[node name="Buy Item Button 3" type="Button" parent="." unique_id=550621906]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 152.0
+offset_right = 192.0
+offset_bottom = 244.0
+text = "Item 3"
+
+[node name="Buy Item Button 4" type="Button" parent="." unique_id=2133448149]
+layout_mode = 0
+offset_left = 232.0
+offset_top = 152.0
+offset_right = 376.0
+offset_bottom = 244.0
+text = "Item 4"
+
+[node name="Upgrade Rod Button" type="Button" parent="." unique_id=392277700]
+layout_mode = 0
+offset_left = 976.0
+offset_top = 168.0
+offset_right = 1112.0
+offset_bottom = 248.0
+text = "Upgrade Rod"
 
 [connection signal="pressed" from="Start Next Round Button" to="." method="_on_start_next_round_button_pressed"]
 [connection signal="pressed" from="Blacksmith Button" to="." method="_on_blacksmith_button_pressed"]
@@ -93,3 +119,6 @@ text = "Item 2"
 [connection signal="mouse_entered" from="Buy Item Button 2" to="." method="_on_buy_item_button_2_mouse_entered"]
 [connection signal="mouse_exited" from="Buy Item Button 2" to="." method="_on_buy_item_button_2_mouse_exited"]
 [connection signal="pressed" from="Buy Item Button 2" to="." method="_on_buy_item_button_2_pressed"]
+[connection signal="mouse_entered" from="Buy Item Button 3" to="." method="_on_buy_item_button_3_mouse_entered"]
+[connection signal="mouse_exited" from="Buy Item Button 3" to="." method="_on_buy_item_button_3_mouse_exited"]
+[connection signal="pressed" from="Buy Item Button 3" to="." method="_on_buy_item_button_3_pressed"]

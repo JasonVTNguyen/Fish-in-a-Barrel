@@ -1,38 +1,114 @@
-extends Node2D
+extends Control
 
 var qte_meter_count : float = 0.0
+@onready var fishing_meter: ProgressBar = $"QTE Panel/Fishing Meter"
 
-var increments1 : float
-var increments2 : float
-var increments3 : float
+const timing_offset = 0.075
+
+var increments1 : float = 9000
+var increments2 : float = 9000
+var increments3 : float = 9000
 
 var is_counting : bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$"QTE Panel/Increment 1".hide()
+	$"QTE Panel/Increment 2".hide()
+	$"QTE Panel/Increment 3".hide()
+	GameController.current_rod = Catalogue.rods.get(0)
 	random_increments()
 	print("Increment 1: ", increments1)
-	print("Increment 2: ", increments2)
-	print("Increment 3: ", increments3)
+	$"QTE Panel/Increment 1".position.y = (1 - increments1) * $"QTE Panel".size.y
+	if GameController.current_rod.rod_tier > 0:
+		print("Increment 2: ", increments2)
+		$"QTE Panel/Increment 2".position.y = (1 - increments2) * $"QTE Panel".size.y
+	if GameController.current_rod.rod_tier > 1:
+		print("Increment 3: ", increments3)
+		$"QTE Panel/Increment 3".position.y = (1 - increments3) * $"QTE Panel".size.y
 	is_counting = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if qte_meter_count >= 60.0:
+	if qte_meter_count >= 100 and is_counting:
+		print("Stopped Counting")
+		print(GameController.fishing_qte_score)
 		is_counting = false
-	if check_if_pass_increment(2.5):
-		print("Increment Touched")
+		get_tree().change_scene_to_file("res://game/scenes/shooting/shooting_phase.tscn")
+	if check_if_within_increment1(timing_offset):
+		$"QTE Panel/Increment 1/Increment 1 Number".text = "Now"
+	else:
+		$"QTE Panel/Increment 1/Increment 1 Number".text = "Nope"
+	if GameController.current_rod.rod_tier > 0:
+		if check_if_within_increment2(timing_offset):
+			$"QTE Panel/Increment 2/Increment 2 Number".text = "Now"
+		else:
+			$"QTE Panel/Increment 2/Increment 2 Number".text = "Nope"
+	if GameController.current_rod.rod_tier > 1:
+		if check_if_within_increment3(timing_offset):
+			$"QTE Panel/Increment 3/Increment 3 Number".text = "Now"
+		else:
+			$"QTE Panel/Increment 3/Increment 3 Number".text = "Nope"
 	if is_counting:
-		qte_meter_count += 0.1
+		qte_meter_count += 0.05
+	update_values()
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("Select"):
+		if check_if_within_increment1(timing_offset):
+			print("Landed 1")
+			increments1 = 9000
+			GameController.fishing_qte_score += 1
+		if GameController.current_rod.rod_tier > 0:
+			if check_if_within_increment2(timing_offset):
+				print("Landed 2")
+				GameController.fishing_qte_score += 1
+				increments2 = 9000
+		if GameController.current_rod.rod_tier > 1:
+			if check_if_within_increment3(timing_offset):
+				print("Landed 3")
+				GameController.fishing_qte_score += 1
+				increments3 = 9000
 
 func random_increments():
-	increments1 = randf_range(10.0, 50.0)
-	increments2 = randf_range(10.0, 50.0)
-	increments3 = randf_range(10.0, 50.0)
-
-func check_if_pass_increment(offset : float):
-	if qte_meter_count <= increments1 + offset or qte_meter_count >= increments1 - offset or qte_meter_count <= increments2 + offset or qte_meter_count >= increments2 - offset or qte_meter_count <= increments3 + offset or qte_meter_count >= increments3 - offset:
-		return true
+	increments1 = randf_range(0.1, 0.9)
+	$"QTE Panel/Increment 1".show()
+	if GameController.current_rod.rod_tier > 0:
+		increments2 = randf_range(0.1, 0.9)
+		$"QTE Panel/Increment 2".show()
+	if GameController.current_rod.rod_tier > 1:
+		increments3 = randf_range(0.1, 0.9)
+		$"QTE Panel/Increment 3".show()
 	
+func update_values() -> void:
+	$"QTE Panel/Fishing Meter".value = qte_meter_count
+	$"QTE Panel/Increment 1".position.y = (1 - increments1) * $"QTE Panel".size.y
+	if GameController.current_rod.rod_tier > 0:
+		$"QTE Panel/Increment 2".position.y = (1 - increments2) * $"QTE Panel".size.y
+	if GameController.current_rod.rod_tier > 1:
+		$"QTE Panel/Increment 3".position.y = (1 - increments3) * $"QTE Panel".size.y
+
+func check_if_within_increment1(offset : float):
+	var qte_modified = qte_meter_count / 100
+	if qte_modified <= increments1 + offset and qte_modified >= increments1 - offset:
+		return true
+	return false
+
+func check_if_within_increment2(offset : float):
+	var qte_modified = qte_meter_count / 100
+	if qte_modified <= increments2 + offset and qte_modified >= increments2 - offset:
+		return true
+	return false
+	
+func check_if_within_increment3(offset : float):
+	var qte_modified = qte_meter_count / 100
+	if qte_modified <= increments3 + offset and qte_modified >= increments3 - offset:
+		return true
+	return false
+
+func _on_test_button_pressed() -> void:
+	random_increments()
+	is_counting = true
+	qte_meter_count = 0.0
+	GameController.fishing_qte_score = 0

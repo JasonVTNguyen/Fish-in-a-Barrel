@@ -16,6 +16,12 @@ var weapon_upgrades : Dictionary[int, Upgrade] = {
 }
 
 var hooks : Dictionary[int, Hook] = {
-	0 : Hook.new("Starter Hook", 0),
+	0 : Hook.new("Starter Hook", 1),
 	1 : Hook.new("Elite Hook", 5)
+}
+
+var rods : Dictionary[int, FishingRod] = {
+	0 : FishingRod.new("Starter Rod", 0),
+	1 : FishingRod.new("Advanced Rod", 1),
+	2 : FishingRod.new("Elite Rod", 2),
 }

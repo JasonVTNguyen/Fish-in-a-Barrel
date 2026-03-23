@@ -39,9 +39,10 @@ offset_bottom = 648.0
 
 [node name="Items" type="Label" parent="Panel" unique_id=136952215]
 layout_mode = 0
-offset_top = 84.0
+offset_left = 8.0
+offset_top = 8.0
 offset_right = 464.0
-offset_bottom = 107.0
+offset_bottom = 192.0
 text = "Item"
 
 [node name="Primary Weapon Box" type="PanelContainer" parent="Panel" unique_id=1548207852]

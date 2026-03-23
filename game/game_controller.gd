@@ -11,6 +11,9 @@ var current_round : int = 0
 
 var fishing_qte_score : float
 
+enum MouseState {IN, OUTSIDE}
+var mouse_state = MouseState.IN
+
 var current_bait : int = 3
 var primary_gun : Gun
 var primary_gun_upgrades : Array[Upgrade] = []
@@ -19,7 +22,7 @@ var secondary_gun : Gun
 var secondary_gun_upgrades : Array[Upgrade] = []
 
 var current_hook : Hook
-
+var current_rod : FishingRod
 
 var story_round_objectives : Dictionary[int,float] = {
 	0 : 10.0,
@@ -55,3 +58,4 @@ func reset_game():
 	secondary_gun = null
 	secondary_gun_upgrades = []
 	current_hook = Catalogue.hooks.get(0)
+	current_rod = Catalogue.rods.get(0)

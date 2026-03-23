@@ -1,12 +1,18 @@
 extends Node2D
 
 var fish_scene : PackedScene = preload("res://game/scenes/fishing/fish.tscn")
+var fishing_qte : PackedScene = preload("res://game/scenes/fishing/fishing_qte.tscn")
+
 var bobber_location : Vector2
 @onready var fish_move_area : NavigationRegion2D = $"Fish Move Area"
 
 enum BobberState {SET, NOT_SET}
+
+
 var bobber_state = BobberState.NOT_SET
 
+
+var is_qte : bool = false
 
 func _ready() -> void:
 	print("Fishing Scene Ready")
@@ -15,7 +21,8 @@ func _ready() -> void:
 	$"Required Weight Total".text = str(GameController.story_round_objectives.get(GameController.current_round))
 	for i in range(5):
 		spawn_fish()
-
+	is_qte = false
+	
 func _process(delta: float) -> void:
 	pass
 
@@ -33,40 +40,34 @@ func randomize_fish(new_fish : Fish) -> void:
 	new_fish.lore = random_fish.lore
 
 func makeFish(fish):
-	if bobber_state == BobberState.SET:
+	if bobber_state == BobberState.SET and not is_qte:
 		#print("Making Fish")
 		GameController.current_bait -= 1
 		GameController.currentFish = Fish.new(fish.fish_name, fish.value, fish.health, fish.img, fish.lore)
+		add_child(fishing_qte.instantiate())
+		bobber_state = BobberState.NOT_SET
+		is_qte = true
 		if GameController.currentFish.health > GameController.current_hook.hook_damage or true:
-			get_tree().change_scene_to_file("res://game/scenes/shooting/shooting_phase.tscn")
-		#else:
-			#GameController.money += GameController.currentFish.value
-			#bobber_state = BobberState.NOT_SET
-			#if GameController.current_bait <= 0:
-				#print("Total Value: " + str(GameController.total_value))
-				#print("Round Goal: " + str(GameController.story_round_objectives.get(GameController.current_round)))
-				#if GameController.money >= GameController.story_round_objectives.get(GameController.current_round):
-					#print("Value Exceeded.")
-					#GameController.money -= GameController.story_round_objectives.get(GameController.current_round)
-					#GameController.current_round += 1
-					#get_tree().change_scene_to_file("res://game/scenes/shopping/shopping_menu.tscn")
-				#else:
-					#print("Game Over")
-					#get_tree().change_scene_to_file("res://game/scenes/mainmenu/main_menu.tscn")
+			pass
+			#get_tree().change_scene_to_file("res://game/scenes/shooting/shooting_phase.tscn")
+
 
 func set_bobber(bobber_pos) -> void:
 	bobber_location = bobber_pos
 	bobber_state = BobberState.SET
-	print(bobber_location)
+	#print(bobber_location)
 
 func unset_bobber() -> void:
 	bobber_state = BobberState.NOT_SET
 
-
-func _on_lake_boundaries_mouse_entered() -> void:
-	if bobber_state == BobberState.SET:
-		pass
-
-
 func _on_skip_to_shop_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://game/scenes/shopping/shopping_menu.tscn")
+
+func _on_lake_boundaries_mouse_entered() -> void:
+	print("Out")
+	GameController.mouse_state = GameController.MouseState.OUTSIDE
+		
+
+func _on_lake_boundaries_mouse_exited() -> void:
+	print("In")
+	GameController.mouse_state = GameController.MouseState.IN

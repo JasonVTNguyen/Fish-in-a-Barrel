@@ -4,8 +4,6 @@ signal switch_scene
 
 @onready var shopping_menu: Control = $".."
 
-var buyable_item1 : Item
-
 var bait_price_box : Dictionary[int, float] = {
 	1 : 50.0,
 	2 : 50.0,
@@ -34,6 +32,9 @@ func _on_buy_bait_button_pressed() -> void:
 		GameController.total_bait += 1
 		GameController.money -= bait_cost
 	update_values()
+
+func buy_item_function(item) -> void:
+	pass
 
 func update_values() -> void:
 	$Money.text = "Cash: " + str(GameController.money)
@@ -67,3 +68,13 @@ func _on_buy_item_button_2_mouse_exited() -> void:
 func _on_buy_item_button_2_pressed() -> void:
 	GameController.inventory.add_item(shopping_menu.for_sale_item2)
 	$"Buy Item Button 2".queue_free()
+
+func _on_buy_item_button_3_mouse_entered() -> void:
+	$Description.text = str(shopping_menu.for_sale_item3)
+
+func _on_buy_item_button_3_mouse_exited() -> void:
+	$Description.text = ""
+
+func _on_buy_item_button_3_pressed() -> void:
+	GameController.inventory.add_item(shopping_menu.for_sale_item3)
+	$"Buy Item Button 3".queue_free()

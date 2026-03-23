@@ -86,6 +86,7 @@ position = Vector2(-207.99998, 136.00002)
 script = ExtResource("7_j3aex")
 
 [node name="Fish Move Area" type="NavigationRegion2D" parent="." unique_id=547630563]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_n7eig")
 
 [node name="Skip to Shop Button" type="Button" parent="." unique_id=1484612838]
@@ -96,4 +97,5 @@ offset_bottom = 642.0
 text = "Skip to Shop"
 
 [connection signal="mouse_entered" from="Lake Boundaries" to="." method="_on_lake_boundaries_mouse_entered"]
+[connection signal="mouse_exited" from="Lake Boundaries" to="." method="_on_lake_boundaries_mouse_exited"]
 [connection signal="pressed" from="Skip to Shop Button" to="." method="_on_skip_to_shop_button_pressed"]
