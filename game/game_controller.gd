@@ -59,3 +59,7 @@ func reset_game():
 	secondary_gun_upgrades = []
 	current_hook = Catalogue.hooks.get(0)
 	current_rod = Catalogue.rods.get(0)
+
+func start_game():
+	reset_game()
+	get_tree().change_scene_to_file("res://game/scenes/fishing/fishing.tscn")

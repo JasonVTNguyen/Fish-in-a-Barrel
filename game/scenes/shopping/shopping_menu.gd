@@ -2,10 +2,15 @@ extends Control
 
 var for_sale_weapon : Gun
 var for_sale_item1 : Item
+var item1_price : float
 var for_sale_item2 : Item
+var item2_price : float
 var for_sale_item3 : Item
+var item3_price : float
 var for_sale_item4 : Item
+var item4_price : float
 
+var has_bought_something : bool = false
 
 @onready var blacksmith: Control = $Blacksmith
 @onready var shop: Control = $Shop
@@ -21,7 +26,12 @@ func _ready() -> void:
 	for_sale_item3 = Catalogue.items.get(randi_range(0,len(Catalogue.items)-1))
 	for_sale_item4 = Catalogue.items.get(randi_range(0,len(Catalogue.items)-1))
 	
-	print(for_sale_item1)
+	item1_price = flucuate_costs(for_sale_item1.avg_price)
+	item2_price = flucuate_costs(for_sale_item2.avg_price)
+	item3_price = flucuate_costs(for_sale_item3.avg_price)
+	item4_price = flucuate_costs(for_sale_item4.avg_price)
+	
+	has_bought_something = false
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -44,3 +54,6 @@ func _on_inventory_button_pressed() -> void:
 
 func _on_inventory_close_inventory() -> void:
 	inventory.hide()
+
+func flucuate_costs(cost : float) -> float:
+	return round(randf_range(cost * .95, cost * 1.05))

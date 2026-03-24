@@ -35,10 +35,16 @@ directories/dch_directory={
 "shopkeeper": "res://game/Dialogic/characters/shopkeeper.dch"
 }
 directories/dtl_directory={
+"abridged_intro": "res://game/Dialogic/timelines/abridged_intro.dtl",
 "story_beginning": "res://game/Dialogic/timelines/story_beginning.dtl"
 }
-layout/style_directory={}
+layout/style_directory={
+"FAA Style": "res://game/Dialogic/faa_style.tres"
+}
 glossary/default_case_sensitive=true
+layout/style_list=["res://game/Dialogic/faa_style.tres"]
+layout/default_style="res://game/Dialogic/style_test.tres"
+variables={}
 
 [display]
 

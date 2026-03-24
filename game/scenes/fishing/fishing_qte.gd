@@ -9,14 +9,13 @@ var increments1 : float = 9000
 var increments2 : float = 9000
 var increments3 : float = 9000
 
-var is_counting : bool = true
+var is_counting : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$"QTE Panel/Increment 1".hide()
 	$"QTE Panel/Increment 2".hide()
 	$"QTE Panel/Increment 3".hide()
-	GameController.current_rod = Catalogue.rods.get(0)
 	random_increments()
 	print("Increment 1: ", increments1)
 	$"QTE Panel/Increment 1".position.y = (1 - increments1) * $"QTE Panel".size.y
@@ -26,6 +25,7 @@ func _ready() -> void:
 	if GameController.current_rod.rod_tier > 1:
 		print("Increment 3: ", increments3)
 		$"QTE Panel/Increment 3".position.y = (1 - increments3) * $"QTE Panel".size.y
+	await get_tree().create_timer(0.75).timeout
 	is_counting = true
 
 
@@ -35,21 +35,23 @@ func _process(delta: float) -> void:
 		print("Stopped Counting")
 		print(GameController.fishing_qte_score)
 		is_counting = false
+		if GameController.currentFish.health <= GameController.current_hook.hook_damage:
+			queue_free()
 		get_tree().change_scene_to_file("res://game/scenes/shooting/shooting_phase.tscn")
 	if check_if_within_increment1(timing_offset):
 		$"QTE Panel/Increment 1/Increment 1 Number".text = "Now"
 	else:
-		$"QTE Panel/Increment 1/Increment 1 Number".text = "Nope"
+		$"QTE Panel/Increment 1/Increment 1 Number".text = ""
 	if GameController.current_rod.rod_tier > 0:
 		if check_if_within_increment2(timing_offset):
 			$"QTE Panel/Increment 2/Increment 2 Number".text = "Now"
 		else:
-			$"QTE Panel/Increment 2/Increment 2 Number".text = "Nope"
+			$"QTE Panel/Increment 2/Increment 2 Number".text = ""
 	if GameController.current_rod.rod_tier > 1:
 		if check_if_within_increment3(timing_offset):
 			$"QTE Panel/Increment 3/Increment 3 Number".text = "Now"
 		else:
-			$"QTE Panel/Increment 3/Increment 3 Number".text = "Nope"
+			$"QTE Panel/Increment 3/Increment 3 Number".text = ""
 	if is_counting:
 		qte_meter_count += 0.05
 	update_values()
@@ -72,13 +74,13 @@ func _input(event: InputEvent) -> void:
 				increments3 = 9000
 
 func random_increments():
-	increments1 = randf_range(0.1, 0.9)
+	increments1 = randf_range(0.2, 0.95)
 	$"QTE Panel/Increment 1".show()
 	if GameController.current_rod.rod_tier > 0:
-		increments2 = randf_range(0.1, 0.9)
+		increments2 = randf_range(0.2, 0.95)
 		$"QTE Panel/Increment 2".show()
 	if GameController.current_rod.rod_tier > 1:
-		increments3 = randf_range(0.1, 0.9)
+		increments3 = randf_range(0.2, 0.95)
 		$"QTE Panel/Increment 3".show()
 	
 func update_values() -> void:

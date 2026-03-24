@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dn1xchpp3bobu"]
+
+[ext_resource type="Script" uid="uid://bt3hdvrif8pcm" path="res://game/Dialogic/opening_cutscene.gd" id="1_woaju"]
+[ext_resource type="PackedScene" uid="uid://b4ahlk6rk3xb2" path="res://game/Dialogic/dialogue_intro.tscn" id="2_hyv47"]
+
+[node name="Opening Cutscene" type="Node" unique_id=42683203]
+script = ExtResource("1_woaju")
+
+[node name="CanvasLayer" parent="." unique_id=1917472099 instance=ExtResource("2_hyv47")]
+
+[node name="Skip Cutscene Button" type="Button" parent="." unique_id=511986551]
+offset_left = 992.0
+offset_top = 592.0
+offset_right = 1136.0
+offset_bottom = 640.0
+text = "Skip"
+
+[connection signal="pressed" from="Skip Cutscene Button" to="." method="_on_skip_cutscene_button_pressed"]

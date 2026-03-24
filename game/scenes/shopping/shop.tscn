@@ -9,7 +9,11 @@ outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_bgeqa"]
-font_size = 20
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dwpt2"]
+font_size = 14
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
@@ -60,13 +64,20 @@ text = "Money"
 label_settings = SubResource("LabelSettings_gcpnk")
 horizontal_alignment = 2
 
-[node name="Description" type="Label" parent="." unique_id=524140565]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=458852790]
 layout_mode = 0
-offset_left = 304.0
+offset_left = 296.0
 offset_top = 360.0
 offset_right = 880.0
-offset_bottom = 528.0
+offset_bottom = 536.0
+
+[node name="Description" type="Label" parent="VBoxContainer" unique_id=524140565]
+layout_mode = 2
 label_settings = SubResource("LabelSettings_bgeqa")
+
+[node name="Function Description" type="Label" parent="VBoxContainer" unique_id=84137260]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_dwpt2")
 
 [node name="Buy Item Button 1" type="Button" parent="." unique_id=1834953524]
 layout_mode = 0
@@ -111,14 +122,17 @@ text = "Upgrade Rod"
 [connection signal="pressed" from="Start Next Round Button" to="." method="_on_start_next_round_button_pressed"]
 [connection signal="pressed" from="Blacksmith Button" to="." method="_on_blacksmith_button_pressed"]
 [connection signal="mouse_entered" from="Buy Bait Button" to="." method="_on_buy_bait_button_mouse_entered"]
-[connection signal="mouse_exited" from="Buy Bait Button" to="." method="_on_buy_bait_button_mouse_exited"]
+[connection signal="mouse_exited" from="Buy Bait Button" to="." method="clear_description"]
 [connection signal="pressed" from="Buy Bait Button" to="." method="_on_buy_bait_button_pressed"]
 [connection signal="mouse_entered" from="Buy Item Button 1" to="." method="_on_buy_item_button_1_mouse_entered"]
-[connection signal="mouse_exited" from="Buy Item Button 1" to="." method="_on_buy_item_button_1_mouse_exited"]
+[connection signal="mouse_exited" from="Buy Item Button 1" to="." method="clear_description"]
 [connection signal="pressed" from="Buy Item Button 1" to="." method="_on_buy_item_button_1_pressed"]
 [connection signal="mouse_entered" from="Buy Item Button 2" to="." method="_on_buy_item_button_2_mouse_entered"]
-[connection signal="mouse_exited" from="Buy Item Button 2" to="." method="_on_buy_item_button_2_mouse_exited"]
+[connection signal="mouse_exited" from="Buy Item Button 2" to="." method="clear_description"]
 [connection signal="pressed" from="Buy Item Button 2" to="." method="_on_buy_item_button_2_pressed"]
 [connection signal="mouse_entered" from="Buy Item Button 3" to="." method="_on_buy_item_button_3_mouse_entered"]
-[connection signal="mouse_exited" from="Buy Item Button 3" to="." method="_on_buy_item_button_3_mouse_exited"]
+[connection signal="mouse_exited" from="Buy Item Button 3" to="." method="clear_description"]
 [connection signal="pressed" from="Buy Item Button 3" to="." method="_on_buy_item_button_3_pressed"]
+[connection signal="mouse_entered" from="Buy Item Button 4" to="." method="_on_buy_item_button_4_mouse_entered"]
+[connection signal="mouse_exited" from="Buy Item Button 4" to="." method="clear_description"]
+[connection signal="pressed" from="Buy Item Button 4" to="." method="_on_buy_item_button_4_pressed"]

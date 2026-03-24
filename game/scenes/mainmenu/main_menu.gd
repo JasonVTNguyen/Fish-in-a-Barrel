@@ -12,8 +12,7 @@ func _process(delta: float) -> void:
 
 
 func _on_start_button_pressed() -> void:
-	GameController.reset_game()
-	get_tree().change_scene_to_file("res://game/scenes/fishing/fishing.tscn")
+	get_tree().change_scene_to_file("res://game/Dialogic/opening_cutscene.tscn")
 
 
 func _on_options_button_pressed() -> void:

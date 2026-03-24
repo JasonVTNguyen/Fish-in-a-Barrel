@@ -8,8 +8,8 @@ enum Bullet_Upgrade_Type {FLAT_DMG, PERCENT_DMG, STATUS}
 @export var percent_dmg : float = 1.0
 
 
-func _init(c_bullet_upgrade_type : String, c_upgrade_name : String, c_flat : int = 0, c_percent : float = 1.0) -> void:
-	super(Upgrade_Type.BULLET, c_upgrade_name)
+func _init(c_bullet_upgrade_type : String, c_upgrade_name : String, c_price : float, c_flat : int = 0, c_percent : float = 1.0) -> void:
+	super(Upgrade_Type.BULLET, c_upgrade_name, c_price)
 	match c_bullet_upgrade_type:
 		"FLAT_DMG":
 			bullet_upgrade_type = Bullet_Upgrade_Type.FLAT_DMG

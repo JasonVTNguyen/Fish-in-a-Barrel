@@ -26,12 +26,19 @@ var state : State = State.WANDER
 
 @export var agent : NavigationAgent2D
 
-func _init(c_fish_name : String = "Test Fish", c_value : float = 250.0, c_health : float = 125.0, c_img : String = "res://icon.svg", c_lore : String = "This is a test fish") -> void:
+func _init(c_fish_name : String = "Test Fish", c_value : float = 250.0, c_health : float = 125.0, c_img : String = "res://icon.svg", c_lore : String = "This is a test fish", c_size : String = "Medium") -> void:
 	fish_name = c_fish_name
 	value = c_value
 	health = c_health
 	img = c_img
 	lore = c_lore
+	#match c_size:
+		#"Small":
+			#self.scale *= Vector2(1,1)
+		#"Medium":
+			#self.scale *= Vector2(1.2,1.2)
+		#"Large":
+			#self.scale *= Vector2(1.5,1.5)
 	self.position = Vector2(r_x, r_y)
 
 func _ready() -> void:
@@ -79,7 +86,6 @@ func set_new_target_destination() -> void:
 			#print("New Target Destination: "+str(target_destination))
 			break
 			#ray_cast_2d.enabled = false
-			
 	elif state == State.ATTRACT:
 		target_destination = bobber_scene.position
 	#if not ray_cast_2d.is_colliding():

@@ -10,13 +10,15 @@ var item_texture : Texture
 var item_desc : String
 var avg_price : float
 
+var function_text : String
+
 var flat_value : int = 0
 var percent_value : float = 1.0
 
 var item_function_flat : String
 var item_function_percent : String
 
-func _init(c_item_name : String, c_item_type : String, c_item_desc : String, c_price : float, c_flat : int = 0, c_percent : float = 1.0, c_func_f : String = "", c_func_p : String = "") -> void:
+func _init(c_item_name : String, c_item_type : String, c_item_desc : String, c_function_text : String, c_price : float, c_flat : int = 0, c_percent : float = 1.0, c_func_f : String = "", c_func_p : String = "") -> void:
 	item_name = c_item_name
 	match c_item_type:
 		"ITEM":
@@ -26,6 +28,7 @@ func _init(c_item_name : String, c_item_type : String, c_item_desc : String, c_p
 		"FISHING":
 			item_type = Item_Type.FISHING
 	item_desc = c_item_desc
+	function_text = c_function_text
 	avg_price = c_price
 	flat_value = c_flat
 	percent_value = c_percent
