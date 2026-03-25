@@ -25,7 +25,7 @@ func _on_buy_ammo_button_pressed() -> void:
 		GameController.secondary_gun.add_to_ammo_capacity(100)
 
 func update_labels() -> void:
-	money.text = "Cash: " + str(GameController.money)
+	money.text = "Cash: $" + str(GameController.money)
 	description_text.text = ""
 
 func _on_buy_weapon_button_pressed() -> void:
