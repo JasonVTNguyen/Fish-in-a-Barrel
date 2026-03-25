@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://yqph571u6cpw"]
 
 [ext_resource type="Script" uid="uid://bkg128qxjnkw6" path="res://game/scenes/shopping/blacksmith.gd" id="1_eekjm"]
-[ext_resource type="Texture2D" uid="uid://frc5j0fey8n8" path="res://game/bg/ShoppingBlacksmithScene.png" id="2_76fyy"]
+[ext_resource type="Texture2D" uid="uid://c4s4g28m08jb" path="res://game/bg/blacksmithbg.png" id="2_2h1f7"]
 [ext_resource type="PackedScene" uid="uid://deiqhg82uiynn" path="res://game/scenes/shopping/replace_weapon_panel.tscn" id="3_2h1f7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2h1f7"]
@@ -23,7 +23,7 @@ script = ExtResource("1_eekjm")
 [node name="ShoppingBlacksmithScene" type="Sprite2D" parent="." unique_id=1038334379]
 position = Vector2(576, 328)
 scale = Vector2(0.73, 0.54666674)
-texture = ExtResource("2_76fyy")
+texture = ExtResource("2_2h1f7")
 
 [node name="To Shop Button" type="Button" parent="." unique_id=1453869757]
 layout_mode = 0
@@ -35,18 +35,18 @@ text = "To Shop"
 
 [node name="Buy Ammo Button" type="Button" parent="." unique_id=1048144131]
 layout_mode = 0
-offset_left = 903.0
-offset_top = 586.0
-offset_right = 1134.0
-offset_bottom = 632.0
+offset_left = 888.0
+offset_top = 528.0
+offset_right = 1119.0
+offset_bottom = 574.0
 text = "Buy Ammo"
 
 [node name="Buy Weapon Button" type="Button" parent="." unique_id=2058136637]
 layout_mode = 0
-offset_left = 432.0
-offset_top = 312.0
-offset_right = 736.0
-offset_bottom = 375.0
+offset_left = 456.0
+offset_top = 320.0
+offset_right = 760.0
+offset_bottom = 383.0
 text = "Buy Weapon"
 
 [node name="Money" type="Label" parent="." unique_id=523980686]
@@ -60,15 +60,18 @@ label_settings = SubResource("LabelSettings_2h1f7")
 
 [node name="Description Text" type="Label" parent="." unique_id=933545156]
 layout_mode = 0
-offset_left = 328.0
-offset_top = 16.0
-offset_right = 728.0
-offset_bottom = 184.0
+offset_left = 440.0
+offset_top = 8.0
+offset_right = 840.0
+offset_bottom = 176.0
 text = "Description"
 label_settings = SubResource("LabelSettings_76fyy")
 
 [node name="Replace Weapon Panel" parent="." unique_id=965525752 instance=ExtResource("3_2h1f7")]
+visible = false
 layout_mode = 0
+offset_top = 0.0
+offset_bottom = 658.0
 
 [connection signal="pressed" from="To Shop Button" to="." method="_on_to_shop_button_pressed"]
 [connection signal="pressed" from="Buy Ammo Button" to="." method="_on_buy_ammo_button_pressed"]

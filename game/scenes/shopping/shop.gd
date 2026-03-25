@@ -3,6 +3,7 @@ extends Control
 signal switch_scene
 
 @onready var shopping_menu: Control = $".."
+@onready var item_name: Label = $VBoxContainer/Name
 @onready var description: Label = $VBoxContainer/Description
 @onready var function_description: Label = $"VBoxContainer/Function Description"
 
@@ -52,6 +53,7 @@ func buy_item_function(item : Item, cost : float) -> bool:
 		update_values()
 		return true
 	else:
+		item_name.text = ""
 		description.text = "Nice try, stupid. Bring enough money next time."
 		function_description.text = ""
 		return false
@@ -65,10 +67,12 @@ func _on_blacksmith_button_pressed() -> void:
 	switch_scene.emit()
 
 func _on_buy_bait_button_mouse_entered() -> void:
-	description.text = "Adds more bait. Allows you to fish extra fish. (Costs: " + str(bait_price_box.get(GameController.total_bait)) + " dollars.)"
+	item_name.text = "Bait Upgrade (Costs: $" + str(bait_price_box.get(GameController.total_bait)) + ")"
+	description.text = "Allows you to fish extra fish."
 
 func _on_buy_item_button_1_mouse_entered() -> void:
-	description.text = str(shopping_menu.for_sale_item1) + " (Costs: " + str(shopping_menu.item1_price) + " dollars.)"
+	item_name.text = str(shopping_menu.for_sale_item1.item_name) + " (Costs: $" + str(shopping_menu.item1_price) + ")"
+	description.text = str(shopping_menu.for_sale_item1.item_desc) 
 	function_description.text = str(shopping_menu.for_sale_item1.function_text)
 
 func _on_buy_item_button_1_pressed() -> void:
@@ -77,7 +81,8 @@ func _on_buy_item_button_1_pressed() -> void:
 		$"Buy Item Button 1".queue_free()
 
 func _on_buy_item_button_2_mouse_entered() -> void:
-	description.text = str(shopping_menu.for_sale_item2) + " (Costs: " + str(shopping_menu.item2_price) + " dollars.)"
+	item_name.text = str(shopping_menu.for_sale_item2.item_name) + " (Costs: $" + str(shopping_menu.item2_price) + ")"
+	description.text = str(shopping_menu.for_sale_item2.item_desc) 
 	function_description.text = str(shopping_menu.for_sale_item2.function_text)
 
 func _on_buy_item_button_2_pressed() -> void:
@@ -86,7 +91,8 @@ func _on_buy_item_button_2_pressed() -> void:
 		$"Buy Item Button 2".queue_free()
 
 func _on_buy_item_button_3_mouse_entered() -> void:
-	description.text = str(shopping_menu.for_sale_item3) + " (Costs: " + str(shopping_menu.item3_price) + " dollars.)"
+	item_name.text = str(shopping_menu.for_sale_item3.item_name) + " (Costs: $" + str(shopping_menu.item3_price) + ")"
+	description.text = str(shopping_menu.for_sale_item3.item_desc) 
 	function_description.text = str(shopping_menu.for_sale_item3.function_text)
 
 func _on_buy_item_button_3_pressed() -> void:
@@ -95,7 +101,8 @@ func _on_buy_item_button_3_pressed() -> void:
 		$"Buy Item Button 3".queue_free()
 
 func _on_buy_item_button_4_mouse_entered() -> void:
-	description.text = str(shopping_menu.for_sale_item4) + " (Costs: " + str(shopping_menu.item4_price) + " dollars.)"
+	item_name.text = str(shopping_menu.for_sale_item4.item_name) + " (Costs: $" + str(shopping_menu.item4_price) + ")"
+	description.text = str(shopping_menu.for_sale_item4.item_desc)
 	function_description.text = str(shopping_menu.for_sale_item4.function_text)
 
 func _on_buy_item_button_4_pressed() -> void:
@@ -104,5 +111,6 @@ func _on_buy_item_button_4_pressed() -> void:
 		$"Buy Item Button 4".queue_free()
 	
 func clear_description() -> void:
+	item_name.text = ""
 	description.text = ""
 	function_description.text = ""

@@ -30,7 +30,7 @@ func update_labels() -> void:
 		$Panel/Items.text = str(GameController.inventory.items)
 	else:
 		$Panel/Items.text = ""
-	$"Panel/Primary Weapon Box/Primary Gun".text = str(GameController.primary_gun.gun_name)
+	$"Panel/Primary Weapon Box/VBoxContainer/Primary Gun".text = str(GameController.primary_gun.gun_name)
 	if GameController.secondary_gun:
 		$"Panel/Secondary Weapon Box/Secondary Gun".text = str(GameController.secondary_gun.gun_name)
 	

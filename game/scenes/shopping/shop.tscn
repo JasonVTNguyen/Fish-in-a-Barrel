@@ -1,10 +1,15 @@
 [gd_scene format=3 uid="uid://can0iqaqrn3fs"]
 
 [ext_resource type="Script" uid="uid://cdae1n3fk48r5" path="res://game/scenes/shopping/shop.gd" id="1_gcpnk"]
-[ext_resource type="Texture2D" uid="uid://dguiojrw265vy" path="res://game/bg/ShoppingShopScene.png" id="2_bgeqa"]
+[ext_resource type="Texture2D" uid="uid://b77nff8c1th10" path="res://game/bg/shopbg.png" id="2_bgeqa"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gcpnk"]
 font_size = 30
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_igd8r"]
+font_size = 18
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
@@ -48,10 +53,10 @@ text = "Blacksmith"
 
 [node name="Buy Bait Button" type="Button" parent="." unique_id=1320310376]
 layout_mode = 0
-offset_left = 784.0
-offset_top = 32.0
-offset_right = 912.0
-offset_bottom = 117.0
+offset_left = 800.0
+offset_top = 48.0
+offset_right = 928.0
+offset_bottom = 136.0
 text = "Buy Bait"
 
 [node name="Money" type="Label" parent="." unique_id=46260244]
@@ -67,9 +72,13 @@ horizontal_alignment = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=458852790]
 layout_mode = 0
 offset_left = 296.0
-offset_top = 360.0
+offset_top = 344.0
 offset_right = 880.0
 offset_bottom = 536.0
+
+[node name="Name" type="Label" parent="VBoxContainer" unique_id=1771261502]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_igd8r")
 
 [node name="Description" type="Label" parent="VBoxContainer" unique_id=524140565]
 layout_mode = 2
@@ -81,42 +90,42 @@ label_settings = SubResource("LabelSettings_dwpt2")
 
 [node name="Buy Item Button 1" type="Button" parent="." unique_id=1834953524]
 layout_mode = 0
-offset_left = 40.0
-offset_top = 32.0
-offset_right = 184.0
-offset_bottom = 120.0
+offset_left = 24.0
+offset_top = 48.0
+offset_right = 168.0
+offset_bottom = 136.0
 text = "Item 1"
 
 [node name="Buy Item Button 2" type="Button" parent="." unique_id=520895541]
 layout_mode = 0
-offset_left = 224.0
-offset_top = 32.0
-offset_right = 368.0
-offset_bottom = 124.0
+offset_left = 208.0
+offset_top = 48.0
+offset_right = 352.0
+offset_bottom = 136.0
 text = "Item 2"
 
 [node name="Buy Item Button 3" type="Button" parent="." unique_id=550621906]
 layout_mode = 0
-offset_left = 48.0
-offset_top = 152.0
-offset_right = 192.0
-offset_bottom = 244.0
+offset_left = 24.0
+offset_top = 184.0
+offset_right = 168.0
+offset_bottom = 276.0
 text = "Item 3"
 
 [node name="Buy Item Button 4" type="Button" parent="." unique_id=2133448149]
 layout_mode = 0
-offset_left = 232.0
-offset_top = 152.0
-offset_right = 376.0
-offset_bottom = 244.0
+offset_left = 208.0
+offset_top = 184.0
+offset_right = 352.0
+offset_bottom = 276.0
 text = "Item 4"
 
 [node name="Upgrade Rod Button" type="Button" parent="." unique_id=392277700]
 layout_mode = 0
-offset_left = 976.0
-offset_top = 168.0
+offset_left = 968.0
+offset_top = 184.0
 offset_right = 1112.0
-offset_bottom = 248.0
+offset_bottom = 272.0
 text = "Upgrade Rod"
 
 [connection signal="pressed" from="Start Next Round Button" to="." method="_on_start_next_round_button_pressed"]

@@ -32,13 +32,13 @@ func _init(c_fish_name : String = "Test Fish", c_value : float = 250.0, c_health
 	health = c_health
 	img = c_img
 	lore = c_lore
-	#match c_size:
-		#"Small":
-			#self.scale *= Vector2(1,1)
-		#"Medium":
-			#self.scale *= Vector2(1.2,1.2)
-		#"Large":
-			#self.scale *= Vector2(1.5,1.5)
+	match c_size:
+		"Small":
+			self.scale *= Vector2(0.75,0.75)
+		"Medium":
+			self.scale *= Vector2(1.2,1.2)
+		"Large":
+			self.scale *= Vector2(2,2)
 	self.position = Vector2(r_x, r_y)
 
 func _ready() -> void:

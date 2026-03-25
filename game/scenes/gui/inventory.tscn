@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dr5ykvpx7yvvd" path="res://game/scenes/shopping/inventory.gd" id="1_jfhyk"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_keejj"]
+bg_color = Color(0.11489678, 0.11489683, 0.11489671, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jfhyk"]
 bg_color = Color(0.38039216, 0.6862745, 0.3019608, 0.49411765)
 corner_radius_top_left = 3
@@ -36,6 +39,7 @@ offset_left = 240.0
 offset_top = 456.0
 offset_right = 912.0
 offset_bottom = 648.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_keejj")
 
 [node name="Items" type="Label" parent="Panel" unique_id=136952215]
 layout_mode = 0
@@ -52,7 +56,10 @@ offset_right = 672.0
 offset_bottom = 96.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_jfhyk")
 
-[node name="Primary Gun" type="Label" parent="Panel/Primary Weapon Box" unique_id=974591002]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Primary Weapon Box" unique_id=1233651409]
+layout_mode = 2
+
+[node name="Primary Gun" type="Label" parent="Panel/Primary Weapon Box/VBoxContainer" unique_id=974591002]
 layout_mode = 2
 text = "Primary Gun"
 
