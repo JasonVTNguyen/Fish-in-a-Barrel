@@ -11,8 +11,12 @@ var increments3 : float = 9000
 
 var is_counting : bool = false
 
+#Temporary
+var longesttime: float = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	print(RenderingServer.get_video_adapter_name())
 	$"QTE Panel/Increment 1".hide()
 	$"QTE Panel/Increment 2".hide()
 	$"QTE Panel/Increment 3".hide()
@@ -28,9 +32,14 @@ func _ready() -> void:
 	await get_tree().create_timer(0.75).timeout
 	is_counting = true
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	#var time_start : int = Time.get_ticks_usec()
+	#var time_end : int = Time.get_ticks_usec()
+	#if (time_end - time_start) > longesttime:
+		#longesttime = time_end - time_start
+	#print("1 loop took" + str(time_end - time_start) + "microseconds")
+	#print("Longest delay so far is: " + str(longesttime))
 	if qte_meter_count >= 100 and is_counting:
 		print("Stopped Counting")
 		print(GameController.fishing_qte_score)
@@ -53,7 +62,10 @@ func _process(delta: float) -> void:
 		else:
 			$"QTE Panel/Increment 3/Increment 3 Number".text = ""
 	if is_counting:
-		qte_meter_count += 0.05
+		if RenderingServer.get_video_adapter_name().contains("Intel"):
+			qte_meter_count += 1
+		else:
+			qte_meter_count += 0.05
 	update_values()
 
 func _input(event: InputEvent) -> void:
