@@ -15,7 +15,7 @@ var bobber_state = BobberState.NOT_SET
 var is_qte : bool = false
 
 func _ready() -> void:
-	print("Fishing Scene Ready")
+	#print("Fishing Scene Ready")
 	$"Bait Count".text = str(GameController.current_bait)
 	$"Total Value".text = "%.2f" % GameController.money
 	$"Required Weight Total".text = "%.2f" % GameController.story_round_objectives.get(GameController.current_round)
